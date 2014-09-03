@@ -1,6 +1,7 @@
 
 import math
 import random
+import numpy
 
 # Calculates and returns the cost function
 def cost(s):
@@ -10,18 +11,44 @@ def cost(s):
 #
 # returns snews, a random value in the neighborhood of s
 def neighbor(s):
-    minVal = max(s - 25, 0)
-    maxVal = min(s + 25, 500)
-    snew = random.randint(minVal, maxVal)
-    return snew
+    min_val = max(s - 25, 0)
+    max_val = min(s + 25, 500)
+
+    s_new = random.randint(min_val, max_val)
+    while s_new == s:
+        s_new = random.randint(min_val, max_val)
+    return s_new
 
 # Random Walk
 
 
 
 # Random Sampling
+# New neighbor function
+def random_sample_neighbor(s):
+    s_new = random.randint(0, 500)
+    while s_new == s:
+        s_new = random.randint(0, 500)
+    return s_new
 
+def random_sample(s_initial, max_iter):
+    s_current=s_initial 
+    s_best=s_current
+    cost_current = cost(s_initial)
+    cost_best=cost_current
 
+    solution = numpy.zeros([max_iter + 1, 5]);
+    solution[0] = [0, s_current, s_best, cost_current, cost_best]
+
+    for i in range(max_iter):
+        s_current = random_sample_neighbor(s_current)
+        cost_current = cost(s_current)
+        if cost_current < cost_best:
+            cost_best = cost_current
+            s_best = s_current
+        solution[i+1] = [i+1, s_current, s_best, cost_current, cost_best]
+
+    return solution
 
 # Deterministic neighborhood
 
