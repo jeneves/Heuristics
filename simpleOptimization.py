@@ -14,3 +14,23 @@ def neighbor(s):
     maxVal = min(s + 25, 500)
     snew = random.randint(minVal, maxVal)
     return snew
+
+# Random Walk
+
+
+
+# Random Sampling
+
+
+
+# Deterministic neighborhood
+
+
+
+# Greedy Deterministic
+
+
+
+# Greedy Stochastic
+
+
