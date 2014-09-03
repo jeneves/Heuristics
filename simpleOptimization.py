@@ -83,22 +83,19 @@ def gd_neighborhood(s):
 
 
 def greedy_deterministic(s_initial, max_iter):
-    solution = numpy.zeros([max_iter + 1, 5])
     cost_best = cost(s_initial)
     s_best = s_initial
+
+    solution = numpy.zeros([max_iter + 1, 5])
     solution[0] = [0, s_initial, s_best, cost_best, cost_best]
 
-    i = 0
-    s_best_changed = True
-    while i < max_iter and s_best_changed:
-        s_best_changed = False
+    for i in range(max_iter):
         neighborhood = gd_neighborhood(s_best)
         for s_current in neighborhood:
             cost_current = cost(s_current)
             if cost_current < cost_best:
                 cost_best = cost_current
                 s_best = s_current
-                s_best_changed = True
         solution[i + 1] = [i + 1, s_best, s_best, cost_best, cost_best]
     return solution
 

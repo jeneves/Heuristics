@@ -1,4 +1,3 @@
-
 import simpleOptimization as simple_opt
 import random
 
