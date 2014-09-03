@@ -100,5 +100,6 @@ def greedy_deterministic(s_initial, max_iter):
                 s_best = s_current
                 s_best_changed = True
         solution[i + 1] = [i + 1, s_best, s_best, cost_best, cost_best]
+    return solution
 
 # Greedy Stochastic
