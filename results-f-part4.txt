@@ -1,0 +1,5 @@
+Average and Std Dev of Cost Best After 100 Iterations:
+RW - Average: -102447.227495, Std Dev: 83203.359928
+RS - Average: -201108.486697, Std Dev: 18514.011376
+GD - Average: -64574.400000, Std Dev: 71036.638371
+GS - Average: -111547.728387, Std Dev: 67775.718751
