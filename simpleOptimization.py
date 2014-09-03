@@ -102,4 +102,22 @@ def greedy_deterministic(s_initial, max_iter):
         solution[i + 1] = [i + 1, s_best, s_best, cost_best, cost_best]
     return solution
 
+
 # Greedy Stochastic
+def greedy_stochastic(s_initial, max_iter):
+    s_current = s_initial
+    s_best = s_initial
+    cost_current = cost(s_initial)
+    cost_best = cost_current
+
+    solution = numpy.zeros([max_iter + 1, 5])
+    solution[0] = [0, s_current, s_best, cost_current, cost_best]
+
+    for i in range(max_iter):
+        s_current = neighbor(s_best)
+        cost_current = cost(s_current)
+        if cost_current < cost_best:
+            cost_best = cost_current
+            s_best = s_current
+        solution[i + 1] = [i + 1, s_current, s_best, cost_current, cost_best]
+    return solution
