@@ -29,7 +29,7 @@ def random_walk(s_initial, max_iter):
     cost_current = cost(s_initial)
     cost_best = cost_current
 
-    solution = numpy.zeros([max_iter + 1, 5]);
+    solution = numpy.zeros([max_iter + 1, 5])
     solution[0] = [0, s_current, s_best, cost_current, cost_best]
 
     for i in range(max_iter):
@@ -41,6 +41,7 @@ def random_walk(s_initial, max_iter):
         solution[i + 1] = [i + 1, s_current, s_best, cost_current, cost_best]
 
     return solution
+
 
 # Random Sampling
 # New neighbor function
@@ -82,11 +83,14 @@ def gd_neighborhood(s):
 
 
 def greedy_deterministic(s_initial, max_iter):
+    solution = numpy.zeros([max_iter + 1, 5])
     cost_best = cost(s_initial)
     s_best = s_initial
-    i = 1
+    solution[0] = [0, s_initial, s_best, cost_best, cost_best]
+
+    i = 0
     s_best_changed = True
-    while i <= max_iter and s_best_changed:
+    while i < max_iter and s_best_changed:
         s_best_changed = False
         neighborhood = gd_neighborhood(s_best)
         for s_current in neighborhood:
@@ -95,5 +99,6 @@ def greedy_deterministic(s_initial, max_iter):
                 cost_best = cost_current
                 s_best = s_current
                 s_best_changed = True
+        solution[i + 1] = [i + 1, s_best, s_best, cost_best, cost_best]
 
 # Greedy Stochastic
