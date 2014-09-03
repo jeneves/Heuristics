@@ -13,3 +13,11 @@ for i in range(30):
     rs_solutions.append(simple_opt.random_sample(s_initial, max_iter))
     gd_solutions.append(simple_opt.greedy_deterministic(s_initial, max_iter))
     gs_solutions.append(simple_opt.greedy_stochastic(s_initial, max_iter))
+
+# generate CSV for Random walk
+(rows, cols) = rw_solutions[0].shape
+with open("RW-solution1.csv", 'w') as rw_file:
+    for i in range(rows):
+        rw_file.write("%d, %d, %d\n" % (rw_solutions[0][i][0],
+                                        rw_solutions[0][i][1],
+                                        rw_solutions[0][i][2]))
