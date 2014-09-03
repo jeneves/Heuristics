@@ -38,7 +38,7 @@ def random_walk(s_initial, max_iter):
         if cost_current < cost_best:
             cost_best = cost_current
             s_best = s_current
-        solution[i+1] = [i+1, s_current, s_best, cost_current, cost_best]
+        solution[i + 1] = [i + 1, s_current, s_best, cost_current, cost_best]
 
     return solution
 
