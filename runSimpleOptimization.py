@@ -69,31 +69,62 @@ with open("average-cost-best.csv", 'w') as best_file:
 # Fourth part: calculations
 iteration = 100
 
+# Compute global minimum
+min_cost = simple_opt.cost(0)
+for i in range(501):
+    cur_cost = simple_opt.cost(i)
+    if (cur_cost < min_cost):
+        min_cost = cur_cost
+
 rw_at_iteration = numpy.zeros([trials, 1])
 rs_at_iteration = numpy.zeros([trials, 1])
 gd_at_iteration = numpy.zeros([trials, 1])
 gs_at_iteration = numpy.zeros([trials, 1])
 
+rw_num_correct = 0
+rs_num_correct = 0
+gd_num_correct = 0
+gs_num_correct = 0
+
 for sol in range(trials):
     rw_at_iteration[sol] = rw_solutions[sol][iteration][4]
+    if (rw_at_iteration[sol] == min_cost):
+        rw_num_correct += 1
+
     rs_at_iteration[sol] = rs_solutions[sol][iteration][4]
+    if (rs_at_iteration[sol] == min_cost):
+        rs_num_correct += 1
+
     gd_at_iteration[sol] = gd_solutions[sol][iteration][4]
+    if (gd_at_iteration[sol] == min_cost):
+        gd_num_correct += 1
+
     gs_at_iteration[sol] = gs_solutions[sol][iteration][4]
+    if (gs_at_iteration[sol] == min_cost):
+        gs_num_correct += 1
 
 print "Average and Std Dev of Cost Best After 100 Iterations:"
 
 rw_avg = numpy.mean(rw_at_iteration)
 rw_std = numpy.std(rw_at_iteration)
-print "RW - Average: %f, Std Dev: %f" % (rw_avg, rw_std)
+print "RW - Average: %f, Std Dev: %f, Times Correct: %d/30" % (rw_avg,
+                                                               rw_std,
+                                                               rw_num_correct)
 
 rs_avg = numpy.mean(rs_at_iteration)
 rs_std = numpy.std(rs_at_iteration)
-print "RS - Average: %f, Std Dev: %f" % (rs_avg, rs_std)
+print "RS - Average: %f, Std Dev: %f, Times Correct: %d/30" % (rs_avg,
+                                                               rs_std,
+                                                               rs_num_correct)
 
 gd_avg = numpy.mean(gd_at_iteration)
 gd_std = numpy.std(gd_at_iteration)
-print "GD - Average: %f, Std Dev: %f" % (gd_avg, gd_std)
+print "GD - Average: %f, Std Dev: %f, Times Correct: %d/30" % (gd_avg,
+                                                               gd_std,
+                                                               gd_num_correct)
 
 gs_avg = numpy.mean(gs_at_iteration)
 gs_std = numpy.std(gs_at_iteration)
-print "GS - Average: %f, Std Dev: %f" % (gs_avg, gs_std)
+print "GS - Average: %f, Std Dev: %f, Times Correct: %d/30" % (gs_avg,
+                                                               gs_std,
+                                                               gs_num_correct)

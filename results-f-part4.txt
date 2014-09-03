@@ -1,5 +1,5 @@
 Average and Std Dev of Cost Best After 100 Iterations:
-RW - Average: -102447.227495, Std Dev: 83203.359928
-RS - Average: -201108.486697, Std Dev: 18514.011376
-GD - Average: -64574.400000, Std Dev: 71036.638371
-GS - Average: -111547.728387, Std Dev: 67775.718751
+RW - Average: -92299.333136, Std Dev: 70278.223007, Times Correct: 1/30
+RS - Average: -195781.143967, Std Dev: 18224.818636, Times Correct: 2/30
+GD - Average: -65931.733333, Std Dev: 58827.598248, Times Correct: 0/30
+GS - Average: -119272.385842, Std Dev: 65437.246876, Times Correct: 4/30
