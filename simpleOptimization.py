@@ -1,4 +1,3 @@
-
 import math
 import random
 import numpy
@@ -72,14 +71,12 @@ def random_sample(s_initial, max_iter):
     return solution
 
 
-# Deterministic neighborhood
-
-
 # Greedy Deterministic
 def gd_neighborhood(s):
     min_val = max(s - 10, 0)
     max_val = min(s + 10, 500)
-    return [neighbor for neighbor in range(min_val, max_val) if neighbor != s]
+    return [neighbor for neighbor in
+            range(min_val, max_val + 1) if neighbor != s]
 
 
 def greedy_deterministic(s_initial, max_iter):
