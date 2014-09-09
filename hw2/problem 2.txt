@@ -1,0 +1,5 @@
+Given that the the lowest Cost(j) in the range is when j = 1, as Cost(1) = 40, S0 = 1 would be chosen as the initial value of S. 
+
+As all the remaining values of S chosen are neighbors of S = 1, the average change in cost is the average of the difference between Cost(j) when j = 2,3,4,5,6 and Cost(1). Given that the differences in costs are 20, 10, 25, 35, and 5, the average change in cost is (20 + 10 + 25 + 35 + 5) / 5 = 19. 
+
+As discussed in lecture, T0 can be estimated ignoring both the value for alpha and M - it can depend purely on P1 and the avgDeltaCost using the estimation function T0 = -avgDeltaCost / ln(P1). Given the value of 19 for averageDeltaCost and 0.9 for P1, T0 = -19/ln(0.9) = 180.33 (when taken to two decimal places). 
