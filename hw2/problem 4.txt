@@ -1,0 +1,5 @@
+a) Given beta = 1 and M = 1, T0 = - avgDeltaCost/ln(P1), alpha = (-avgDeltaCost/(T0 * ln(P2))) ^ (1/G), and T2 = (alpha^G) * T0. Since G = 1000, P1 = 0.9, P2 = 0.05, and the calculated value of avgDeltaCost from the script SAParamter.py is 16113261.4, the value of T0 is approximately 152934534.3, the value of alpha is 0.996658, and the value of T2 is approximately 5378738.
+
+b)
+
+c) T0 = -16113261.4/ln(0.7) = 45176320.0, alpha = (-16113261.4/(45176320.0 * ln(0.05)))^(1/1000) = 0.997874.
