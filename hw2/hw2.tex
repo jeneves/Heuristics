@@ -116,4 +116,25 @@ As all the remaining values of $S$ chosen are neighbors of $S = 1$, the average 
 
 As discussed in lecture, $T_0$ can be estimated ignoring both the value for $\alpha$ and $M$ - it can depend purely on $P_1$ and the $Avg\Delta Cost$ using the estimation function $T_0 = -Avg\Delta Cost / ln(P_1)$. Given the value of $19$ for $Avg\Delta Cost$ and $0.9$ for $P_1$, $T_0 = -19/ln(0.9) \approx 180.333$. 
 
+\subsection{3}
+
+See SA.py, which contains implementations of cost, neighbor, and SA.
+
+\subsection{4}
+\subsubsection{a}
+Given $beta = 1$ and $M = 1$, $T_0 =- avg\Delta Cost/ln(P1)$, $\alpha = (-avg\Delta Cost/(T0 * ln(P2)))^{1/G}$, and $T_2 = \alpha^G * T_0$. Since $G = 1000$, $P1 = 0.9$, $P2 = 0.05$, and the calculated value of $avg\Delta Cost$ from the script SAParamter.py is 16113261.4, the value of $T_0$ is approximately 152934534.3, the value of $\alpha$ is 0.996658, and the value of $T_2$ is approximately 5378738.
+
+\subsubsection{b}
+\includegraphics[width=\linewidth]{p1_09.png}
+For these 30 trials, the average best cost after 1000 iterations was 913569927.986380, and the standard deviation among the trials was 23955996.148293. The average CPU time for the 30 trials was 0.009900 seconds.
+
+\subsubsection{c}
+When $P1 = 0.7$, $T_0 = -16113261.4/ln(0.7) = 45176320.0$, $\alpha = (-16113261.4/(45176320.0 * ln(0.05)))^{1/1000} = 0.997874$. Intuitively, $\alpha$ is greater because each temperature decrease step is less to move from probability 0.7 to 0.05 instead of 0.9 to 0.05.\\
+\includegraphics[width=\linewidth]{p1_09.png}
+On these trials, the average best cost after 1000 iterations was 908484315.913066, the standard deviation was 22342227.133530, and the average CPU time was 0.008267 seconds.\\\\
+Comparing after 1100 iterations, for $P1=0.9$, the average $BestCost=910015578.170673$, while for $P1=0.7$, the average $BestCost=907198602.927177$. In this set of 30 trials, $P1=0.7$ worked better than $P1=0.9$, as the best cost was lower.
+
+\subsubsection{d}
+On average, both sets of trials saw noticeable, although not large, improvements over the final 100 iterations. In the trial for P1=0.9, the average best cost decreased from 913569927.986380 to 910015578.170673, and in the trial for P1=0.7, the average best cost decreased from 908484315.913066 to 907198602.927177. Neither of these changes are dramatic on the scale of the cost, but they're enough to demonstrate a successful greedy finish to the simulated annealing algorithm.
+
 \end{document}

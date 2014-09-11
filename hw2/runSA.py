@@ -8,8 +8,6 @@ max_s = 127
 Z = []
 
 while len(Z) != 30:
-    solution_sets = []
-    best_s_sets = []
     s = [random.randint(min_s, max_s), random.randint(min_s, max_s)]
     if not s in Z:
         Z.append(s)
@@ -21,6 +19,9 @@ def run_trials(T0, alpha, out_avg_file):
     max_time = 1100
 
     trials = 30
+
+    solution_sets = []
+    best_s_sets = []
 
     total_cpu_time = 0
 
