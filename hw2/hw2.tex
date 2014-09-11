@@ -1,0 +1,112 @@
+\documentclass[12pt]{article}
+%\usepackage{fullpage}
+\usepackage{epic}
+\usepackage{eepic}
+\usepackage{paralist}
+\usepackage{graphicx}
+\usepackage{algorithm,algorithmic}
+\usepackage{tikz}
+\usepackage{xcolor,colortbl}
+\usepackage{amsmath, amssymb}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This is FULLPAGE.STY by H.Partl, Version 2 as of 15 Dec 1988.
+% Document Style Option to fill the paper just like Plain TeX.
+
+\typeout{Style Option FULLPAGE Version 2 as of 15 Dec 1988}
+
+\topmargin 0pt
+\advance \topmargin by -\headheight
+\advance \topmargin by -\headsep
+
+\textheight 8.9in
+
+\oddsidemargin 0pt
+\evensidemargin \oddsidemargin
+\marginparwidth 0.5in
+
+\textwidth 6.5in
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{empty}
+\setlength{\oddsidemargin}{0in}
+\setlength{\topmargin}{-0.8in}
+\setlength{\textwidth}{6.8in}
+\setlength{\textheight}{9.5in}
+
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0in}
+\addtolength{\parskip}{0.2cm}
+\setlength{\fboxrule}{.5mm}\setlength{\fboxsep}{1.2mm}
+\newlength{\boxlength}\setlength{\boxlength}{\textwidth}
+\addtolength{\boxlength}{-4mm}
+
+\newcommand{\algosolutionbox}[2]{
+  \begin{center}
+    \framebox{\parbox{\boxlength}{
+        \textbf{CS 5722, Fall 2014} \hfill \textbf{#1}\\
+        #2
+      }}
+  \end{center}}
+
+
+\begin{document}
+
+\algosolutionbox{Homework 2}{
+  % TODO: fill in your own name, netID, and collaborators
+  Group: Michael Jalkio, Kevin Li, Daniel Sperling\\
+  NetIDs: mrj77, kyl27, dhs252\\
+}
+
+\bigskip
+
+
+\subsection{1}
+\subsubsection{(a)}
+We know that $MaxCost - MinCost = 100$ and assume that the distribution of costs is uniform between $MaxCost$ and $MinCost$.  Using method 1 this means:
+\begin{align*}
+Avg\Delta Cost = 0.25(MaxCost-MinCost)=0.25*100=25
+\end{align*}
+If we want $P_{initial}=0.4$ we should set our $T_0$ such that $e^{-Avg\Delta Cost / T_0} = 0.4$:
+\begin{align*}
+e^{-Avg\Delta Cost / T_0} & = 0.4\\
+\frac{-25}{T_0} & = ln(0.4)\\
+T_0 & = \frac{-25}{ln(0.4)} \approx 27.28
+\end{align*}
+
+\subsubsection{(b)}
+To find a general expression for $T_0$ in terms of $MaxCost$, $MinCost$, and $P_1$:
+\begin{align*}
+Avg\Delta Cost & = 0.25(MaxCost-MinCost)\\\\
+P_1 & = e^{-Avg\Delta Cost / T_0} = e^{-0.25(MaxCost-MinCost) / T_0}\\\\
+\therefore T_0 & = \frac{-0.25(MaxCost-MinCost)}{ln(P_1)}
+\end{align*}
+
+\subsubsection{(c)}
+For $T_f$ (a better name for $Tfinal$) nothing changes.  The relationship between $MaxCost$, $MinCost$, and the probability of an uphill move are exactly the same.
+\begin{align*}
+T_f & = \frac{-0.25(MaxCost-MinCost)}{ln(P_2)}
+\end{align*}
+
+\subsubsection{(d)}
+We have a simulated annealing algorithm with $T_0 = 100$, $Maxtime = 200$, $\beta=1$, $M=1$, and $MaxCost - MinCost = 100$.  We must find the correct value of $\alpha$ so the probability of moving uphill on the 200th iteration is $0.001$.
+
+We found the equation for this in lecture:
+\begin{align*}
+\alpha  = \left( \frac{-Avg\Delta Cost}{T_0 ln(P2)} \right)^{1/G}
+= \left( \frac{-25}{100 ln(0.001)} \right)^{1/200}
+\approx 0.984
+\end{align*}
+
+\subsubsection{(e)}
+The $M>1$ case was also discussed in lecture, so if $M=10$:
+\begin{align*}
+\alpha  = \left( \frac{-Avg\Delta Cost}{T_0 ln(P2)} \right)^{M/GM}
+= \left( \frac{-25}{100 ln(0.001)} \right)^{10/200}
+= \left( \frac{-1}{4 ln(0.001)} \right)^{1/20}
+\approx 0.847
+\end{align*}
+Intuitively, if $M$ is bigger this means that the temperature will be reduced fewer times, so each of those times we need to decrease it more.
+
+\end{document}
