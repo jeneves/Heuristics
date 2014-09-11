@@ -94,7 +94,7 @@ We have a simulated annealing algorithm with $T_0 = 100$, $Maxtime = 200$, $\bet
 
 We found the equation for this in lecture:
 \begin{align*}
-\alpha  = \left( \frac{-Avg\Delta Cost}{T_0 ln(P2)} \right)^{1/G}
+\alpha  = \left( \frac{-Avg\Delta Cost}{T_0 ln(P_2)} \right)^{1/G}
 = \left( \frac{-25}{100 ln(0.001)} \right)^{1/200}
 \approx 0.984
 \end{align*}
@@ -102,11 +102,18 @@ We found the equation for this in lecture:
 \subsubsection{(e)}
 The $M>1$ case was also discussed in lecture, so if $M=10$:
 \begin{align*}
-\alpha  = \left( \frac{-Avg\Delta Cost}{T_0 ln(P2)} \right)^{M/GM}
+\alpha  = \left( \frac{-Avg\Delta Cost}{T_0 ln(P_2)} \right)^{M/GM}
 = \left( \frac{-25}{100 ln(0.001)} \right)^{10/200}
 = \left( \frac{-1}{4 ln(0.001)} \right)^{1/20}
 \approx 0.847
 \end{align*}
 Intuitively, if $M$ is bigger this means that the temperature will be reduced fewer times, so each of those times we need to decrease it more.
+
+\subsection{2}
+Given that the the lowest $Cost(j)$ in the range is when $j = 1$, as $Cost(1) = 40$, $S_0 = 1$ would be chosen as the initial value of $S$. 
+
+As all the remaining values of $S$ chosen are neighbors of $S = 1$, the average change in cost is the average of the difference between $Cost(j)$ when $j = 2,3,4,5,6$ and $Cost(1)$. The differences in costs are $20$, $10$, $25$, $35$, and $5$, the average change in cost is $(20 + 10 + 25 + 35 + 5) / 5 = 19$. 
+
+As discussed in lecture, $T_0$ can be estimated ignoring both the value for $\alpha$ and $M$ - it can depend purely on $P_1$ and the $Avg\Delta Cost$ using the estimation function $T_0 = -Avg\Delta Cost / ln(P_1)$. Given the value of $19$ for $Avg\Delta Cost$ and $0.9$ for $P_1$, $T_0 = -19/ln(0.9) \approx 180.333$. 
 
 \end{document}
