@@ -1,0 +1,104 @@
+\documentclass[12pt]{article}
+%\usepackage{fullpage}
+\usepackage{epic}
+\usepackage{eepic}
+\usepackage{paralist}
+\usepackage{graphicx}
+\usepackage{algorithm,algorithmic}
+\usepackage{tikz}
+\usepackage{xcolor,colortbl}
+\usepackage{amsmath, amssymb}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This is FULLPAGE.STY by H.Partl, Version 2 as of 15 Dec 1988.
+% Document Style Option to fill the paper just like Plain TeX.
+
+\typeout{Style Option FULLPAGE Version 2 as of 15 Dec 1988}
+
+\topmargin 0pt
+\advance \topmargin by -\headheight
+\advance \topmargin by -\headsep
+
+\textheight 8.9in
+
+\oddsidemargin 0pt
+\evensidemargin \oddsidemargin
+\marginparwidth 0.5in
+
+\textwidth 6.5in
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{empty}
+\setlength{\oddsidemargin}{0in}
+\setlength{\topmargin}{-0.8in}
+\setlength{\textwidth}{6.8in}
+\setlength{\textheight}{9.5in}
+
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0in}
+\addtolength{\parskip}{0.2cm}
+\setlength{\fboxrule}{.5mm}\setlength{\fboxsep}{1.2mm}
+\newlength{\boxlength}\setlength{\boxlength}{\textwidth}
+\addtolength{\boxlength}{-4mm}
+
+\newcommand{\algosolutionbox}[2]{
+  \begin{center}
+    \framebox{\parbox{\boxlength}{
+        \textbf{CS 5722, Fall 2014} \hfill \textbf{#1}\\
+        #2
+      }}
+  \end{center}}
+
+
+\begin{document}
+
+\algosolutionbox{Homework 3}{
+  % TODO: fill in your own name, netID, and collaborators
+  Group: Michael Jalkio, Kevin Li, Daniel Sperling\\
+  NetIDs: mrj77, kyl27, dhs252\\
+}
+
+\bigskip
+
+
+\section{1}
+\subsection{(b)}
+In the 30 runs plotted, we found the global maximum 6 times.
+
+\subsection{(c)}
+Since the probability of a certain member being selected as a parent is
+directly proportional to its fitness, it is impossible to assign a probability
+to a member with negative fitness. This can be corrected by finding the
+individual with the most negative fitness, if one exists, and adding the
+absolute value of this fitness to the fitness of every individual. This
+will guarantee every individual has a non-negative fitness.
+
+\subsection{(d)}
+The crossover function treats the decision variables as one 14-bit string,
+with only one crossover point. Since the decision variables are actually two
+distinct integers, we should treat each as a 7-bit string and perform crossover
+independently for each decision variable.
+
+\subsection{(e)}
+Each decision variable ranges from 0 to 127, inclusive. Therefore there are
+$128 * 128 = 16386$ unique combinations for the pair of decision variable. We can
+be certain we've found the optimal solution if we evaluate the objective
+function for each of the 16386 decision variable combinations.
+
+\section{2}
+\subsection{(b)}
+In this problem tournament selection worked significantly better.  I believe that it's because in this case, having a probability to pick a very bad parent (as can happen with roulette selection), really hurt the next population.
+
+\section{3}
+\subsection{(a)}
+To convert to a minimization problem add the min\_cost and max\_cost and then subtract our actual fitness value.  This causes small actual fitnesses to evaluate to large fitnesses, so by maximizing we're actually finding the smallest actual fitness.
+
+\subsection{(d)}
+It's difficult to conclude based on this that either algorithm is better or worse.  Here we're testing both problems which certain parameters.  The parameters chosen can make a large difference in these heuristic optimization problems, and we're not sure what parameters would make these algorithms better or worse.
+
+We also don't know how these two algorithms perform on different cost functions.  Every function is different, and some algorithms will do a better job with functions with certain properties.
+
+Finally, the two algorithms might do significantly differently if the number of cost evaluations changed.  Overall here we're comparing over a very small sample size (one problem), so we can't definitely say which algorithm is better (and honestly neither will ever be definitely better).
+
+\end{document}
