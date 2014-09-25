@@ -3,7 +3,7 @@ Part 2:
 a) The decision vector will be represented as an integer vector of length 10. The i-th bit in the vector will represent the chip that the i-th cell is in. For instance, consider the vector: [1, 1, 1, 1, 1, 2, 2, 2, 2, 2]. Cells 1-5 are on the first chip, and cells 6-10 are on the second chip.
 
 
-b) The neighborhood for a given decision vector will be the set of vectors where one pair of different-value elements are swapped.
+b) The neighborhood for a given decision vector will be the set of vectors where one pair of different-valued elements are swapped.
 
 Example neighbors:
 [2, 1, 1, 1, 1, 2, 2, 2, 2, 1]  (swap cell 1 with cell 10)
@@ -12,7 +12,7 @@ Example neighbors:
 There are exactly 5 * 5 = 25 neighbors because each of the 5 cells on chip 1 can be swapped with each of the 5 cells on chip 2.
 
 
-c) Iteration 2 (initial) : [1, 1, 1, 1, 1, 2, 2, 2, 2, 2]
+c) Iteration 1 (initial) : [1, 1, 1, 1, 1, 2, 2, 2, 2, 2]
 
 Iteration 2 : [1, 1, 2, 1, 1, 1, 2, 2, 2, 2]  (swap cell 3 with cell 6)
 
