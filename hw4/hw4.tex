@@ -1,0 +1,87 @@
+\documentclass[12pt]{article}
+%\usepackage{fullpage}
+\usepackage{epic}
+\usepackage{eepic}
+\usepackage{paralist}
+\usepackage{graphicx}
+\usepackage{algorithm,algorithmic}
+\usepackage{tikz}
+\usepackage{xcolor,colortbl}
+\usepackage{amsmath, amssymb}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This is FULLPAGE.STY by H.Partl, Version 2 as of 15 Dec 1988.
+% Document Style Option to fill the paper just like Plain TeX.
+
+\typeout{Style Option FULLPAGE Version 2 as of 15 Dec 1988}
+
+\topmargin 0pt
+\advance \topmargin by -\headheight
+\advance \topmargin by -\headsep
+
+\textheight 8.9in
+
+\oddsidemargin 0pt
+\evensidemargin \oddsidemargin
+\marginparwidth 0.5in
+
+\textwidth 6.5in
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{empty}
+\setlength{\oddsidemargin}{0in}
+\setlength{\topmargin}{-0.8in}
+\setlength{\textwidth}{6.8in}
+\setlength{\textheight}{9.5in}
+
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0in}
+\addtolength{\parskip}{0.2cm}
+\setlength{\fboxrule}{.5mm}\setlength{\fboxsep}{1.2mm}
+\newlength{\boxlength}\setlength{\boxlength}{\textwidth}
+\addtolength{\boxlength}{-4mm}
+
+\newcommand{\algosolutionbox}[2]{
+  \begin{center}
+    \framebox{\parbox{\boxlength}{
+        \textbf{CS 5722, Fall 2014} \hfill \textbf{#1}\\
+        #2
+      }}
+  \end{center}}
+
+
+\begin{document}
+
+\algosolutionbox{Homework 4}{
+  Group: Michael Jalkio, Kevin Li, Daniel Sperling\\
+  NetIDs: mrj77, kyl27, dhs252
+}
+
+\subsection{1(a)}
+We need a binary string of length 5 for this problem.  As we learned in class, a binary string of length $n$ can be used to represent integers from 0 to $2^n - 1$.  Here we need to represent the numbers from 0 to 31, so if we plug in $n=5$ we see that a binary string of length five can be used for the integer range $[0,31]$.
+
+\subsubsection{(b)}
+I would define my neighborhood as all binary strings with a single bit changed.  Since there are 5 bits that we can flip in our binary string, this means that our neighborhood has 5 members.  All the neighbors are guaranteed to be valid options because every binary string of length 5 maps to an base 10 integer between 0 and 31.
+
+\subsection{2(a)}
+The decision vector will be represented as an integer vector of length 10. The $i$-th bit in the vector will represent the chip that the $i$-th cell is in. For instance, consider the vector: $[1, 1, 1, 1, 1, 2, 2, 2, 2, 2]$. Cells 1-5 are on the first chip, and cells 6-10 are on the second chip.
+
+\subsubsection{(b)}
+The neighborhood for a given decision vector will be the set of vectors where one pair of different-valued elements are swapped.  Example neighbors:\\
+$[2, 1, 1, 1, 1, 2, 2, 2, 2, 1]$ (swap cell 1 with cell 10)\\
+$[1, 1, 2, 1, 1, 2, 2, 1, 2, 2]$  (swap cell 3 with cell 8)\\\\
+There are exactly $5 * 5 = 25$ neighbors because each of the 5 cells on chip 1 can be swapped with each of the 5 cells on chip 2.
+
+\subsubsection{(c)}
+Iteration 1 (initial) : $[1, 1, 1, 1, 1, 2, 2, 2, 2, 2]$
+
+Iteration 2 : $[1, 1, 2, 1, 1, 1, 2, 2, 2, 2]$  (swap cell 3 with cell 6)
+
+Iteration 3 : $[2, 1, 2, 1, 1, 1, 2, 2, 1, 2]$  (swap cell 1 with cell 9)
+
+Tabu Neighbors for Iteration 4:\\
+$[2, 1, 1, 1, 1, 2, 2, 2, 1, 2]$  (cannot swap cells 3 and 6)\\
+$[1, 1, 2, 1, 1, 1, 2, 2, 2, 2]$  (cannot swap cells 2 and 9)
+
+\end{document}
