@@ -40,6 +40,7 @@ def best_neighbor_index(neighbors):
     best_cost = float('-inf')
     for index, (flipped_bit, string, cost) in enumerate(neighbors):
         if cost > best_cost:
+            best_cost = cost
             best_index = index
     return best_index
 
@@ -95,7 +96,6 @@ print('Best solution from one trial: x = ' + str(tabu_search()))
 optimal_solution = -1
 optimal_cost = float('-inf')
 for x in range(32):
-    print('x = ' + str(x) + ', ' + str(cost(x)))
     if cost(x) > optimal_cost:
         optimal_cost = cost(x)
         optimal_solution = x
