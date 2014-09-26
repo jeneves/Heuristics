@@ -1,0 +1,3 @@
+1a) We need a binary string of length 5 for this problem.  As we learned in class, a binary string of length n can be used to represent integers from 0 to 2^n - 1.  Here we need to represent the numbers from 0 to 31, so if we plug in n=5 we see that a binary string of length five can be used for the integer range [0,31].
+
+1b) I would define my neighborhood as all binary strings with a single bit changed.  Since there are 5 bits that we can flip in our binary string, this means that our neighborhood has 5 members.  All the neighbors are guaranteed to be valid options because every binary string of length 5 maps to an base 10 integer between 0 and 31.
