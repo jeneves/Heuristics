@@ -1,0 +1,77 @@
+\documentclass[12pt]{article}
+%\usepackage{fullpage}
+\usepackage{epic}
+\usepackage{eepic}
+\usepackage{paralist}
+\usepackage{graphicx}
+\usepackage{algorithm,algorithmic}
+\usepackage{tikz}
+\usepackage{xcolor,colortbl}
+\usepackage{amsmath, amssymb}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This is FULLPAGE.STY by H.Partl, Version 2 as of 15 Dec 1988.
+% Document Style Option to fill the paper just like Plain TeX.
+
+\typeout{Style Option FULLPAGE Version 2 as of 15 Dec 1988}
+
+\topmargin 0pt
+\advance \topmargin by -\headheight
+\advance \topmargin by -\headsep
+
+\textheight 8.9in
+
+\oddsidemargin 0pt
+\evensidemargin \oddsidemargin
+\marginparwidth 0.5in
+
+\textwidth 6.5in
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{empty}
+\setlength{\oddsidemargin}{0in}
+\setlength{\topmargin}{-0.8in}
+\setlength{\textwidth}{6.8in}
+\setlength{\textheight}{9.5in}
+
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0in}
+\addtolength{\parskip}{0.2cm}
+\setlength{\fboxrule}{.5mm}\setlength{\fboxsep}{1.2mm}
+\newlength{\boxlength}\setlength{\boxlength}{\textwidth}
+\addtolength{\boxlength}{-4mm}
+
+\newcommand{\algosolutionbox}[2]{
+  \begin{center}
+    \framebox{\parbox{\boxlength}{
+        \textbf{CS 5722, Fall 2014} \hfill \textbf{#1}\\
+        #2
+      }}
+  \end{center}}
+
+\begin{document}
+
+\algosolutionbox{Homework 5}{
+  % TODO: fill in your own name, netID, and collaborators
+  Group: Michael Jalkio, Kevin Li, Daniel Sperling\\
+  NetIDs: mrj77, kyl27, dhs252
+}
+
+\section{1}
+\subsection{(i)}
+There should be 6 decision variables for this problem.  Each of the variables can either be true or false, so the total number of possible assignments is 64, which is equal to the total number of values that can be represented by a binary string of length 6.
+
+What's interesting is that if this was a more complex problem with different constraints we would need additional variables to represent everything as a 2-SAT problem.
+
+\subsection{(ii)}
+I will use $H$ to represent whether or not everyone can get home to their apartment.  True assignments mean that an individual is taking the car home.
+\begin{align*}
+H = (E \lor D) \land (A \lor C) \land (A \lor \lnot B) \land 
+	(A \lor \lnot F) \land (\lnot C \lor \lnot F) \land (C \lor \lnot E)
+\end{align*}
+
+\subsection{(iii)}
+Yes, this problem is satisfiable.  One possible assignment is to set $A,B,D,F$ to true (they go in the car) and $C,E$ to false (they go with the bartender).
+
+\end{document}
