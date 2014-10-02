@@ -1,0 +1,13 @@
+Questions:
+
+1)
+
+2) There are 2^20 unique variable assignments for this problem.
+
+3) We iterate over all possible values of k from 0 through 19. For each value
+of k, we run Tabu seach many times with different initial solutions, but with
+the same number of maximum iterations. We determine the best k by observing the
+average number of cost function evaluations required to find a satisfying
+solution.
+
+4)
