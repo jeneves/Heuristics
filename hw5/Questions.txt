@@ -8,6 +8,9 @@ Questions:
 of k, we run Tabu seach many times with different initial solutions, but with
 the same number of maximum iterations. We determine the best k by observing the
 average number of cost function evaluations required to find a satisfying
-solution.
+solution. The best value for k, according to our results, is 15.
 
-4)
+4) We found one satisfying solution in exactly one trial, with k = 15. This
+trial had an average of 823 cost function evaluations. The average trial has
+approximately 900 cost function evaluations, with an average best aspiration
+level of 87.
