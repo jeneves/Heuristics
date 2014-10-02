@@ -1,3 +1,4 @@
+import random
 
 def costSAT(s, sat_matrix):
     cost = 0
@@ -29,6 +30,7 @@ def neighborhood(s, sat_matrix):
         new_string = s[0:index] + flipped_bit + s[index + 1:]
         c = costSAT(s, sat_matrix)
         neighbors.append((index, new_string, c))
+    random.shuffle(neighbors)
     return neighbors
 
 
