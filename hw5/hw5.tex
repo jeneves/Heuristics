@@ -74,4 +74,17 @@ H = (E \lor D) \land (A \lor C) \land (A \lor \lnot B) \land
 \subsection{(iii)}
 Yes, this problem is satisfiable.  One possible assignment is to set $A,B,D,F$ to true (they go in the car) and $C,E$ to false (they go with the bartender).
 
+\section{(2)}
+\subsection{(i)}
+See attached code.
+
+\subsection{(ii)}
+There are $2^20$ unique variable assignments for this problem.
+
+\subsection{(iii)}
+We iterate over all possible values of k from 0 through 19. For each value of k, we run Tabu seach many times with different initial solutions, but with the same number of maximum iterations. We determine the best k by observing the average number of cost function evaluations required to find a satisfying solution. The best value for k, according to our results, is 15.
+
+\subsection{(iv)}
+We found one satisfying solution in exactly one trial, with k = 15. This trial had an average of 823 cost function evaluations. The average trial has approximately 900 cost function evaluations, with an average best aspiration level of 87.
+
 \end{document}
