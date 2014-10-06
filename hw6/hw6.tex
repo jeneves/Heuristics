@@ -1,0 +1,88 @@
+\documentclass[12pt]{article}
+%\usepackage{fullpage}
+\usepackage{epic}
+\usepackage{eepic}
+\usepackage{paralist}
+\usepackage{graphicx}
+\usepackage{algorithm,algorithmic}
+\usepackage{tikz}
+\usepackage{xcolor,colortbl}
+\usepackage{amsmath, amssymb}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This is FULLPAGE.STY by H.Partl, Version 2 as of 15 Dec 1988.
+% Document Style Option to fill the paper just like Plain TeX.
+
+\typeout{Style Option FULLPAGE Version 2 as of 15 Dec 1988}
+
+\topmargin 0pt
+\advance \topmargin by -\headheight
+\advance \topmargin by -\headsep
+
+\textheight 8.9in
+
+\oddsidemargin 0pt
+\evensidemargin \oddsidemargin
+\marginparwidth 0.5in
+
+\textwidth 6.5in
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{empty}
+\setlength{\oddsidemargin}{0in}
+\setlength{\topmargin}{-0.8in}
+\setlength{\textwidth}{6.8in}
+\setlength{\textheight}{9.5in}
+
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0in}
+\addtolength{\parskip}{0.2cm}
+\setlength{\fboxrule}{.5mm}\setlength{\fboxsep}{1.2mm}
+\newlength{\boxlength}\setlength{\boxlength}{\textwidth}
+\addtolength{\boxlength}{-4mm}
+
+\newcommand{\algosolutionbox}[2]{
+  \begin{center}
+    \framebox{\parbox{\boxlength}{
+        \textbf{CS 5722, Fall 2014} \hfill \textbf{#1}\\
+        #2
+      }}
+  \end{center}}
+
+\begin{document}
+
+\algosolutionbox{Homework 6}{
+  % TODO: fill in your own name, netID, and collaborators
+  Group: Michael Jalkio, Kevin Li, Daniel Sperling\\
+  NetIDs: mrj77, kyl27, dhs252
+}
+
+\section{1}
+\subsection{a)}
+
+Below follows a table demonstrating a solution with 17 channels:\\
+
+\begin{table}[h]
+\begin{tabular}{|r|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+\multicolumn{1}{|l|}{\textbf{}} & \multicolumn{17}{c|}{\textbf{Channels}}                                                                                                   \\ \hline
+1                               & 0          & 0 & \textbf{1} & 0 & 0 & 0          & 0 & 0          & 0 & 0          & 0 & 0          & 0 & 0 & 0          & 0 & 0          \\ \cline{2-18} 
+2                               & 0          & 0 & \textbf{1} & 0 & 0 & 0          & 0 & \textbf{1} & 0 & 0          & 0 & 0          & 0 & 0 & 0          & 0 & 0          \\ \cline{2-18} 
+3                               & 0          & 0 & 0          & 0 & 0 & 0          & 0 & 0          & 0 & \textbf{1} & 0 & 0          & 0 & 0 & \textbf{1} & 0 & 0          \\ \cline{2-18} 
+Cells  4                        & 0          & 0 & 0          & 0 & 0 & 0          & 0 & 0          & 0 & 0          & 0 & 0          & 0 & 0 & \textbf{1} & 0 & 0          \\ \cline{2-18} 
+5                               & 0          & 0 & \textbf{1} & 0 & 0 & 0          & 0 & \textbf{1} & 0 & 0          & 0 & 0          & 0 & 0 & 0          & 0 & 0          \\ \cline{2-18} 
+6                               & 0          & 0 & 0          & 0 & 0 & 0          & 0 & 0          & 0 & \textbf{1} & 0 & 0          & 0 & 0 & \textbf{1} & 0 & 0          \\ \cline{2-18} 
+7                               & \textbf{1} & 0 & 0          & 0 & 0 & \textbf{1} & 0 & 0          & 0 & 0          & 0 & \textbf{1} & 0 & 0 & 0          & 0 & \textbf{1} \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection{b)}
+Cell 1 has a conflict with 6, 2 with itself and 7, 3 with itself and 7, 4 with 5, 5 with itself and 6, 6 with 7 twice, and 7 with itself twice. This totals to the number of conflicts (the objective function) equaling \textbf{11 conflicts}.
+
+\subsection{c)}
+There are $7 * 13 = 91$ decision variables in such a problem.
+
+\subsection{d)}
+Yes, the minimum is 17. Each of the four channels in 7 must be separated by a minimum of four channels - this is 16 channels. There are then four assignments (two in 2 and two in 3, at least), that each must be at least two apart from  each other and two away from 7. It is impossible to assign all four of these in the three gaps of size four - only one assignment can go into each of those gaps. As such, at least one of those gaps must be widened by one - this is the 17th channel. As seen in part a, it is possible to do an assignment with 17 channels, so the minimum is 17.
+\end{document}
