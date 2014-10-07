@@ -16,11 +16,11 @@ surf(X, Y, Z);
 title('Surface graph of bump function');
 xlabel('x1');
 ylabel('x2');
-zlabel('bump([x1, x2]');
+zlabel('bump([x1, x2])');
 
 figure
 contour(X, Y, Z);
-title('Surface graph of bump function');
+title('Contour graph of bump function');
 xlabel('x1');
 ylabel('x2');
-zlabel('bump([x1, x2]');
+zlabel('bump([x1, x2])');
