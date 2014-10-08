@@ -1,6 +1,7 @@
 from math import cos, sqrt
 from InitialPopulations import initial_populations
 import random
+from numpy import mean
 
 
 def constraints_valid(values):
@@ -125,7 +126,6 @@ def GA_backend(X_initial, pop_size, max_gen, p_crossover, p_mutation,
         result = [generation, average_fitness, best_fitness]
         solution.append(result)
 
-    print(solution)
     return (solution, best_s)
 
 
@@ -214,11 +214,45 @@ def generate_initial_populations():
             print(str(population) + ',')
     print(']')
 
+
+# Do not run this because it takes forever lolol
+def find_best_parameters(pop_size, max_gen):
+    possible_parameters = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+    possible_variances = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0,
+                          5.5, 6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0, 9.5, 10.0]
+    best_variance = 0
+    best_mutation = 0
+    best_crossover = 0
+    best_average_elite_solution = 0
+    for p_mutation in possible_parameters:
+        for p_crossover in possible_parameters:
+            for variance in possible_variances:
+                elite_solutions = []
+                for population in initial_populations():
+                    solution, elite = GA_T(population, pop_size, max_gen,
+                                           p_crossover, p_mutation, variance)
+                    elite_solutions.append(elite)
+
+                average_elite_solution = mean(elite_solutions)
+                if average_elite_solution > best_average_elite_solution:
+                    print('Found new best values!')
+                    print(str(variance) + ', ' +
+                          str(p_crossover) + ', ' +
+                          str(p_mutation))
+                    best_average_elite_solution = average_elite_solution
+                    best_variance = variance
+                    best_crossover = p_crossover
+                    best_mutation = p_mutation
+    print('We found some great parameters!!')
+    print('Variance: ' + str(best_variance))
+    print('Probability Crossover: ' + str(best_crossover))
+    print('Probability Mutation: ' + str(best_mutation))
+
+
 pop_size = 50
-max_gen = 50
+max_gen = 200
 p_mutation = 0.2
 p_crossover = 0.3
 variance = 2
 
-for population in initial_populations():
-    GA_T(population, pop_size, max_gen, p_crossover, p_mutation, variance)
+find_best_parameters(pop_size, max_gen)
