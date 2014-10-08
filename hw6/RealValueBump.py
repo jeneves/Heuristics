@@ -68,7 +68,7 @@ def GA_T(X_initial, pop_size, max_gen, p_crossover, p_mutation, variance):
 
 # Primary genetic algorithm function
 def GA_backend(X_initial, pop_size, max_gen, p_crossover, p_mutation,
-               use_tournament, convert_to_min, variance):
+               convert_to_min, use_tournament, variance):
     fitness_values = []
     best_s = X_initial[0]
     best_fitness = bump(best_s)
@@ -93,10 +93,7 @@ def GA_backend(X_initial, pop_size, max_gen, p_crossover, p_mutation,
         children = []
         while len(children) < pop_size:
             parents = []
-            if use_tournament:
-                parents = selection_T(population, fitness_values)
-            else:
-                parents = selection_R(population, fitness_values)
+            parents = selection_T(population, fitness_values)
             children += crossover(parents, p_crossover)
 
         # Mutate the offspring and evaluate their fitness
@@ -114,9 +111,6 @@ def GA_backend(X_initial, pop_size, max_gen, p_crossover, p_mutation,
 
         # Produce relevant solution code
         generation = i
-        if (convert_to_min):
-            generation *= pop_size
-
         best_fitness = max(fitness_values)
         best_index = fitness_values.index(best_fitness)
         best_s = population[best_index]
@@ -127,25 +121,6 @@ def GA_backend(X_initial, pop_size, max_gen, p_crossover, p_mutation,
         solution.append(result)
 
     return (solution, best_s)
-
-
-# Selects a pair of parents using roulette selection based on their fitness
-# values.
-def selection_R(population, fitness_values):
-    total_fitness = sum(fitness_values)
-
-    # Randomly choose two parents with probability based on their fitness
-    parents = []
-    for i in range(2):
-        position = random.random() * total_fitness
-        cur_fitness = 0
-        for j in range(len(population)):
-            if cur_fitness + fitness_values[j] >= position:
-                parents.append(population[j])
-                break
-            cur_fitness += fitness_values[j]
-
-    return parents
 
 
 # Selects a pair of parents using tournament selection based on their fitness
@@ -169,24 +144,28 @@ def selection_T(population, fitness_values):
 # Produces two children from the pair of parents, performing single-point
 # crossover for each with probability p_crossover
 def crossover(parents, p_crossover):
-    offspring = []
-
     if p_crossover > random.random():
-        crossover_point = random.randint(1, 19)
-        child1 = parents[0][:crossover_point] + parents[1][crossover_point:]
-        child2 = parents[1][:crossover_point] + parents[0][crossover_point:]
-        offspring.append(child1)
-        offspring.append(child2)
+        # We attempt to do crossover 6 times checking if constraints are obeyed
+        attempts = 0
+        while True:
+            crossover_pt = random.randint(1, 19)
+            child1 = parents[0][:crossover_pt] + parents[1][crossover_pt:]
+            child2 = parents[1][:crossover_pt] + parents[0][crossover_pt:]
+            if constraints_valid(child1) and constraints_valid(child2):
+                return [child1, child2]
+            else:
+                attempts += 1
+                if attempts > 5:
+                    return parents
     else:
-        offspring = parents
-
-    return offspring
+        return parents
 
 
 # Mutates the solution at each bit with probability p_mutation
 def mutation(s, p_mutation, variance):
-    mutation_invalid = True
-    while mutation_invalid:
+    # We attempt to do mutation 6 times checking if constraints are obeyed
+    attempts = 0
+    while True:
         s_mutated = []
         for i in range(len(s)):
             if p_mutation > random.random():
@@ -194,8 +173,11 @@ def mutation(s, p_mutation, variance):
             else:
                 s_mutated.append(s[i])
         if constraints_valid(s_mutated):
-            mutation_invalid = False
-    return s_mutated
+            return s_mutated
+        else:
+            attempts += 1
+            if attempts > 5:
+                return s
 
 
 # LET'S RUN THIS SHIT
@@ -217,28 +199,28 @@ def generate_initial_populations():
 
 # Do not run this because it takes forever lolol
 def find_best_parameters(pop_size, max_gen):
-    possible_parameters = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
-    possible_variances = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0,
-                          5.5, 6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0, 9.5, 10.0]
+    possible_parameters = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+    possible_variances = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]
     best_variance = 0
     best_mutation = 0
     best_crossover = 0
     best_average_elite_solution = 0
+    populations = initial_populations()
     for p_mutation in possible_parameters:
         for p_crossover in possible_parameters:
             for variance in possible_variances:
+                print('Trying: ' + str(variance) + ', ' +
+                      str(p_crossover) + ', ' +
+                      str(p_mutation))
                 elite_solutions = []
-                for population in initial_populations():
-                    solution, elite = GA_T(population, pop_size, max_gen,
+                for i in range(3):
+                    solution, elite = GA_T(populations[i], pop_size, max_gen,
                                            p_crossover, p_mutation, variance)
-                    elite_solutions.append(elite)
-
+                    elite_solutions.append(bump(elite))
                 average_elite_solution = mean(elite_solutions)
+                print('Average elite solution: ' + str(average_elite_solution))
                 if average_elite_solution > best_average_elite_solution:
                     print('Found new best values!')
-                    print(str(variance) + ', ' +
-                          str(p_crossover) + ', ' +
-                          str(p_mutation))
                     best_average_elite_solution = average_elite_solution
                     best_variance = variance
                     best_crossover = p_crossover
@@ -251,8 +233,6 @@ def find_best_parameters(pop_size, max_gen):
 
 pop_size = 50
 max_gen = 200
-p_mutation = 0.2
-p_crossover = 0.3
+p_mutation = 0.1
+p_crossover = 0.7
 variance = 2
-
-find_best_parameters(pop_size, max_gen)
