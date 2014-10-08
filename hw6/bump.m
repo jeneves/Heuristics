@@ -24,7 +24,7 @@ for i = 1:n
 end
 denominator = sqrt(denominator);
 
-cost = (numerator1 + numerator2) / denominator;
+cost = abs((numerator1 + numerator2) / denominator);
 
 end
 
