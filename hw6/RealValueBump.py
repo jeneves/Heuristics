@@ -238,18 +238,26 @@ p_mutation = 0.1
 variance = 2
 
 elite_solutions = []
+elite_solution_vals = []
 all_solutions = []
 for population in initial_populations():
     solution, elite = GA_T(population, pop_size, max_gen,
                            p_crossover, p_mutation, variance)
-    elite_solutions.append(bump(elite))
+    elite_solutions.append(elite)
+    elite_solution_vals.append(bump(elite))
     all_solutions.append(solution)
 
 with open("problem2_results.txt", 'w') as output:
-    output.write('Average: ' + str(mean(elite_solutions)))
-    output.write('\nStandard deviation: ' + str(std(elite_solutions)))
-    output.write('\nBest: ' + str(max(elite_solutions)))
-    output.write('\nWorst: ' + str(min(elite_solutions)))
+    output.write('Average: ' + str(mean(elite_solution_vals)))
+    output.write('\nStandard deviation: ' + str(std(elite_solution_vals)))
+    best_value = max(elite_solution_vals)
+    output.write('\nBest value: ' + str(best_value))
+    output.write('\nBest member: ' +
+                 str(elite_solutions[elite_solution_vals.index(best_value)]))
+    worst_value = min(elite_solution_vals)
+    output.write('\Worst member: ' + str(worst_value))
+    output.write('\nWorst value: ' +
+                 str(elite_solutions[elite_solution_vals.index(worst_value)]))
 
 with open("problem2_elitesolution_vs_evals.csv", 'w') as output:
     output.write('Function Evaluations,Average\n')

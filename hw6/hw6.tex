@@ -91,10 +91,18 @@ Yes, the minimum is 17. Each of the four channels in 7 must be separated by a mi
 \subsection{iii.}
 I chose to use a brute force ``experiment'' to find the best parameters.  I attempted all combinations of a large number of values for pMutation, pCrossover, and $V$.  For pMutation and pCrossover the values I tried were $[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]$ and for $V$ the values used were $[1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]$.  Yes, this took a long time to run.
 
-For every combination I ran the genetic algorithm with 3 different initial populations (these were the same 3 for every trial), and then found the average elite bump function value.  I found that the combination of parameters with the highest average elite solution was $V=2.0$, pCrossover $=0.7$, and pMutation $=0.1$.
+For every combination I ran the genetic algorithm with 3 different initial populations (these were the same 3 for every trial), and then found the average elite bump function value.  I found that the combination of parameters with the highest average elite solution was $V=2.0$, $\text{pCrossover} =0.7$, and $\text{pMutation} =0.1$.
 
 \subsection{iv.}
-The average fitness of the fittest members of the population was $0.706684796561$.  The standard deviation of the fittest members of the population was $0.028884569214$.  The best solution was $0.75020038188$ and the worst solution was $0.616538623612$.
+The average fitness of the fittest members of the population was $0.713401420075$.  The standard deviation of the fittest members of the population was $0.029858775518$.  The most fit member overall was:
+\begin{align*} 
+[3.064198856410788, 3.045933757913558, 3.0890092039978754, 3.073307537865654,\\ 2.858687419720218, 3.1461361256283227, 2.9391049363260886, 2.9330114316619595,\\ 2.9671806260328584, 0.4104508863181406, 0.39050790783291395, 0.49497721875386846,\\ 0.30254155872490707, 0.5434266329774524, 0.45720003735193226, 0.5109670303882086, \\ 0.46143215389831327, 0.5951647847564943, 0.3188694696960166, 0.2766059603205482]
+\end{align*}
+and it had a value of $0.758511263377$.  The least fit member overall was
+\begin{align*}
+[0.23600114763555305, 3.073816196073199, 2.9982296511970827, 3.202720680187456, \\ 2.9790205461501564, 3.022382774230237, 2.9139448909249692, 2.962096586726405, \\ 0.39667140927739053, 2.9372073655011506, 3.107027601546546, 3.026677239579595, \\ 1.3551503841351584, 0.8043543265228381, 0.4950037102453887, 0.4471412754809059, \\ 0.13667890818517237, 0.24682261227206115, 0.1630153732730799, 0.09618401485986772]
+\end{align*}
+and it had a value of $0.6401625568607917$.
 
 Our plot appears in question 3.
 
