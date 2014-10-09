@@ -1,0 +1,5 @@
+The constraint handling techinique proposed by Deb (2000) reduces performance
+of the genetic algorithm. The bump function returns f_min - error if the
+solution is infeasible. This value may be positive, if the error is small and
+the current worst fitness is still large. Thus, an infeasible solution may be
+(incorrectly) assigned a positive fitness value.

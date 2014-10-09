@@ -3,19 +3,32 @@ from InitialPopulations import initial_populations
 import random
 from numpy import mean, std
 
+f_min = 0.0
+
 
 def constraints_valid(values):
-    product = 1
+    product = 1.0
+    error_sum = 0.0
+    valid = True;
     for x in values:
-        if x < 0.0 or x > 10.0:
-            return False
+        if x < 0.0:
+            valid = False
+            # error_sum -= x / 10.0
+        elif x > 10.0:
+            valid = False
+            # error_sum += x / 10.0 - 1
         product *= x
-    return product >= 0.75
+    if product < 0.75:
+        valid = False
+        error_sum += abs(min(1 - product / 0.75, 0))
+    return (valid, error_sum)
 
 
 def bump(values):
-    if not constraints_valid(values):
-        return 0.0
+    global f_min
+    valid, error = constraints_valid(values)
+    if not valid:
+        return f_min - error
     numerator_sum = 0.0
     numerator_product = 1.0
     denominator_sum = 0.0
@@ -25,6 +38,7 @@ def bump(values):
         # Need i+1 below because Matlab is 1 indexed (ugh)
         denominator_sum += (i + 1) * x ** 2
     fraction = (numerator_sum - 2 * numerator_product) / sqrt(denominator_sum)
+    f_min = min(f_min, abs(fraction))
     return abs(fraction)
 
 
@@ -66,9 +80,11 @@ def GA_T(X_initial, pop_size, max_gen, p_crossover, p_mutation, variance):
 # Primary genetic algorithm function
 def GA_backend(X_initial, pop_size, max_gen, p_crossover, p_mutation,
                convert_to_min, use_tournament, variance):
+    global f_min
     fitness_values = []
     best_s = X_initial[0]
     best_fitness = bump(best_s)
+    f_min = bump(best_s)
 
     # Initial fitness of population
     for s in X_initial:
@@ -76,6 +92,8 @@ def GA_backend(X_initial, pop_size, max_gen, p_crossover, p_mutation,
         if (fitness_s > best_fitness):
             best_s = s
             best_fitness = fitness_s
+        elif (fitness_s < f_min):
+            f_min = fitness_s
         fitness_values.append(fitness_s)
     average_fitness = sum(fitness_values) / pop_size
 
@@ -100,6 +118,7 @@ def GA_backend(X_initial, pop_size, max_gen, p_crossover, p_mutation,
             mutated = mutation(child, p_mutation, variance)
             offspring.append(mutated)
             offspring_fitness.append(bump(mutated))
+        f_min = min(min(offspring_fitness), f_min)
 
         # Select the top children, plus the one top parent
         population, fitness_values = select(pop_size, fitness_values,
@@ -244,7 +263,7 @@ for population in initial_populations():
     elite_solution_vals.append(bump(elite))
     all_solutions.append(solution)
 
-with open("problem2_results.txt", 'w') as output:
+with open("problem3_results.txt", 'w') as output:
     output.write('Average: ' + str(mean(elite_solution_vals)))
     output.write('\nStandard deviation: ' + str(std(elite_solution_vals)))
     best_value = max(elite_solution_vals)
@@ -252,11 +271,11 @@ with open("problem2_results.txt", 'w') as output:
     output.write('\nBest member: ' +
                  str(elite_solutions[elite_solution_vals.index(best_value)]))
     worst_value = min(elite_solution_vals)
-    output.write('\Worst value: ' + str(worst_value))
+    output.write('Worst value: ' + str(worst_value))
     output.write('\nWorst member: ' +
                  str(elite_solutions[elite_solution_vals.index(worst_value)]))
 
-with open("problem2_elitesolution_vs_evals.csv", 'w') as output:
+with open("problem3_elitesolution_vs_evals.csv", 'w') as output:
     output.write('Function Evaluations,Average\n')
     for i in range(1, max_gen + 1):
         elite_solutions_at_i = []
