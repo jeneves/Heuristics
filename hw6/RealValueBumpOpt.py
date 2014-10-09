@@ -9,7 +9,7 @@ f_min = 0.0
 def constraints_valid(values):
     product = 1.0
     error_sum = 0.0
-    valid = True;
+    valid = True
     for x in values:
         if x < 0.0:
             valid = False
@@ -196,7 +196,7 @@ def mutation(s, p_mutation, variance):
                 return s
 
 
-# LET'S RUN THIS SHIT
+# LET'S RUN THIS
 def generate_initial_populations():
     print('[')
     for i in range(20):
@@ -213,7 +213,7 @@ def generate_initial_populations():
     print(']')
 
 
-# Do not run this because it takes forever lolol
+# Do not run this because it takes forever
 def find_best_parameters(pop_size, max_gen):
     possible_parameters = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
     possible_variances = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]

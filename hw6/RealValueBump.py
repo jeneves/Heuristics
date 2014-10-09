@@ -177,7 +177,7 @@ def mutation(s, p_mutation, variance):
                 return s
 
 
-# LET'S RUN THIS SHIT
+# LET'S RUN THIS
 def generate_initial_populations():
     print('[')
     for i in range(20):
@@ -194,7 +194,7 @@ def generate_initial_populations():
     print(']')
 
 
-# Do not run this because it takes forever lolol
+# This takes a long time to run
 def find_best_parameters(pop_size, max_gen):
     possible_parameters = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
     possible_variances = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]
