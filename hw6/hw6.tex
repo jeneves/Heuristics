@@ -85,4 +85,19 @@ There are $7 * 13 = 91$ decision variables in such a problem.
 
 \subsection{d)}
 Yes, the minimum is 17. Each of the four channels in 7 must be separated by a minimum of four channels - this is 16 channels. There are then four assignments (two in 2 and two in 3, at least), that each must be at least two apart from  each other and two away from 7. It is impossible to assign all four of these in the three gaps of size four - only one assignment can go into each of those gaps. As such, at least one of those gaps must be widened by one - this is the 17th channel. As seen in part a, it is possible to do an assignment with 17 channels, so the minimum is 17.
+
+\newpage
+\section{2}
+\subsection{iii.}
+I chose to use a brute force ``experiment'' to find the best parameters.  I attempted all combinations of a large number of values for pMutation, pCrossover, and $V$.  For pMutation and pCrossover the values I tried were $[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]$ and for $V$ the values used were $[1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]$.  Yes, this took a long time to run.
+
+For every combination I ran the genetic algorithm with 3 different initial populations (these were the same 3 for every trial), and then found the average elite bump function value.  I found that the combination of parameters with the highest average elite solution was $V=2.0$, pCrossover $=0.7$, and pMutation $=0.1$.
+
+\subsection{iv.}
+The average fitness of the fittest members of the population was $0.706684796561$.  The standard deviation of the fittest members of the population was $0.028884569214$.  The best solution was $0.75020038188$ and the worst solution was $0.616538623612$.
+
+Our plot appears in question 3.
+
+\subsection{v.}
+I feel that the arithmetic operator crossover could be good for this problem.  This is because of the nature of the bump function.  It takes the sum and the product of multiple numbers, so it's mostly about how those values interact together.  Because of this, it makes sense to take the average (so set $w=0.5$) of our two parents.  Doing this means that numbers that ``played nicely'' and led to good results will continue to contribute to their children with the same proportions.
 \end{document}

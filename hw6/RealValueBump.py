@@ -1,7 +1,7 @@
 from math import cos, sqrt
 from InitialPopulations import initial_populations
 import random
-from numpy import mean
+from numpy import mean, std
 
 
 def constraints_valid(values):
@@ -233,6 +233,29 @@ def find_best_parameters(pop_size, max_gen):
 
 pop_size = 50
 max_gen = 200
-p_mutation = 0.1
 p_crossover = 0.7
+p_mutation = 0.1
 variance = 2
+
+elite_solutions = []
+all_solutions = []
+for population in initial_populations():
+    solution, elite = GA_T(population, pop_size, max_gen,
+                           p_crossover, p_mutation, variance)
+    elite_solutions.append(bump(elite))
+    all_solutions.append(solution)
+
+with open("problem2_results.txt", 'w') as output:
+    output.write('Average: ' + str(mean(elite_solutions)))
+    output.write('\nStandard deviation: ' + str(std(elite_solutions)))
+    output.write('\nBest: ' + str(max(elite_solutions)))
+    output.write('\nWorst: ' + str(min(elite_solutions)))
+
+with open("problem2_elitesolution_vs_evals.csv", 'w') as output:
+    output.write('Function Evaluations,Average\n')
+    for i in range(1, max_gen + 1):
+        elite_solutions_at_i = []
+        for solution in all_solutions:
+            elite_solutions_at_i.append(solution[i][2])
+        average_elite_solution = mean(elite_solutions_at_i)
+        output.write(str(i * 20) + ',' + str(average_elite_solution) + '\n')
