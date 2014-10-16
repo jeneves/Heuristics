@@ -25,8 +25,8 @@ GA/GS Statistics: T Statistic: 2.003192
 
 T Two Sided, alpha = 0.05/2: 2.228346
 T One Sided, alpha = 0.05: 1.812587
-P Two Sided: 1.926982
-P One Sided: 0.963491
+P Two Sided: 0.073018
+P One Sided: 0.036509
 
 
 iv) Paired T Statistics: T Statistic: -2.415644

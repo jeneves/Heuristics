@@ -1,0 +1,97 @@
+\documentclass[12pt]{article}
+%\usepackage{fullpage}
+\usepackage{epic}
+\usepackage{eepic}
+\usepackage{paralist}
+\usepackage{graphicx}
+\usepackage{algorithm,algorithmic}
+\usepackage{tikz}
+\usepackage{xcolor,colortbl}
+\usepackage{amsmath, amssymb}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This is FULLPAGE.STY by H.Partl, Version 2 as of 15 Dec 1988.
+% Document Style Option to fill the paper just like Plain TeX.
+
+\typeout{Style Option FULLPAGE Version 2 as of 15 Dec 1988}
+
+\topmargin 0pt
+\advance \topmargin by -\headheight
+\advance \topmargin by -\headsep
+
+\textheight 8.9in
+
+\oddsidemargin 0pt
+\evensidemargin \oddsidemargin
+\marginparwidth 0.5in
+
+\textwidth 6.5in
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{empty}
+\setlength{\oddsidemargin}{0in}
+\setlength{\topmargin}{-0.8in}
+\setlength{\textwidth}{6.8in}
+\setlength{\textheight}{9.5in}
+
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0in}
+\addtolength{\parskip}{0.2cm}
+\setlength{\fboxrule}{.5mm}\setlength{\fboxsep}{1.2mm}
+\newlength{\boxlength}\setlength{\boxlength}{\textwidth}
+\addtolength{\boxlength}{-4mm}
+
+\newcommand{\algosolutionbox}[2]{
+  \begin{center}
+    \framebox{\parbox{\boxlength}{
+        \textbf{CS 5722, Fall 2014} \hfill \textbf{#1}\\
+        #2
+      }}
+  \end{center}}
+
+\begin{document}
+
+\algosolutionbox{Homework 7}{
+  % TODO: fill in your own name, netID, and collaborators
+  Group: Michael Jalkio, Kevin Li, Daniel Sperling\\
+  NetIDs: mrj77, kyl27, dhs252
+}
+
+\section{iii}
+The null hypothesis for each pair is that the mean value of the two search heuristics is the same.\\\\
+
+\subsection{SA/GA}
+Statistics: T Statistic: -2.736028\\
+P value for Two Sided: 0.020504\\
+P value for One Sided: 0.010252\\
+
+For comparison at $\alpha = 0.05$, $t_{\alpha/2,v} = 2.220195$, $t_{\alpha, v}  = 1.807620$. As $t < -t_{\alpha/2,v}$, we reject the null hypothesis and accept that the two mean values are the same. Then, since $t <= -t_{\alpha, v}$, we can accept the alternate hypothesis that $\mu_x - \mu_y < \Delta_0$, indicating that the mean of SA is statistically significantly less than the mean of GA.\\\\
+
+
+\subsection{SA/GS}
+Statistics: T Statistic: -2.176592\\
+P value for Two Sided: 0.043283\\
+P value for One Sided: 0.021642\\
+
+For comparison at $\alpha = 0.05$, $t_{\alpha/2,v} = 2.103228$, $t_{\alpha, v}  = 1.735502$. As $t < -t_{\alpha/2,v}$, we reject the null hypothesis and accept that the two mean values are the same. Then, since $t <= -t_{\alpha, v}$, we can accept the alternate hypothesis that $\mu_x - \mu_y < \Delta_0$, indicating that the mean of SA is statistically significantly less than the mean of GS.\\\\
+
+\subsection{GA/GS}
+Statistics: T Statistic: 2.003192\\
+P value for Two Sided: 0.073018\\
+P value for One Sided: 0.036509\\
+
+For comparison at $\alpha = 0.05$, $t_{\alpha/2,v} = 2.228346$, $t_{\alpha, v}  = 1.812587$. Since $t \nless -t_{\alpha/2,v}$ and $t \ngtr t_{\alpha/2,v}$, we cannot reject the null hypothesis that the means of the GA and GS are statistically significantly the same.
+
+
+\section{iv}
+Yes; we would use the paired t-test, as it is a more accurate test for algorithms using the same number of runs and identical initial solutions as is the case here. The null hypothesis is the same, that the mean found from the search performed by each of the two search heuristics, SA and GS, is the same. \\
+
+Statistics: T Statistic: -2.415644\\ 
+P value for Two Sided: 0.038887\\
+P value for One Sided: 0.019444\\
+
+The results here are the same as in section iii, but slightly stronger. The p-value is lower for two sided, 0.0389 compared to 0.043283, indicating a higher level of confidence that the mean values are differnet. At $\alpha = 0.05$, $t_{\alpha/2,v} = 2.262157$, $t_{\alpha, v}  = 1.833113$. As $t < -t_{\alpha/2,v}$, we reject the null hypothesis and accept that the two mean values are the same. Then, since $t <= -t_{\alpha, v}$, we can accept the alternate hypothesis that $\mu_x - \mu_y < \Delta_0$, indicating that the mean of SA is statistically significantly less than the mean of GS.\\\\
+
+
+\end{document}

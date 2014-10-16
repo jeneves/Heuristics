@@ -61,7 +61,7 @@ alpha = 0.05;
 fprintf('iii)\n');
 
 for i = 1 : 3
-    pTwoSide = 2 * tcdf(tVals(i), vVals(i));
+    pTwoSide = 2 * tcdf(-abs(tVals(i)), vVals(i));
     pOneSide = pTwoSide / 2;
     
     tTwoSide = tinv(1 - alpha/2, vVals(i));
