@@ -1,0 +1,70 @@
+iii)
+SA/GA Statistics: T Statistic: -2.736028
+
+ Comparison Values:
+
+T Two Sided, alpha = 0.05/2: 2.220195
+T One Sided, alpha = 0.05: 1.807620
+P Two Sided: 0.020504
+P One Sided: 0.010252
+
+
+SA/GS Statistics: T Statistic: -2.176592
+
+ Comparison Values:
+
+T Two Sided, alpha = 0.05/2: 2.103228
+T One Sided, alpha = 0.05: 1.735502
+P Two Sided: 0.043283
+P One Sided: 0.021642
+
+
+GA/GS Statistics: T Statistic: 2.003192
+
+ Comparison Values:
+
+T Two Sided, alpha = 0.05/2: 2.228346
+T One Sided, alpha = 0.05: 1.812587
+P Two Sided: 1.926982
+P One Sided: 0.963491
+
+
+iv) Paired T Statistics: T Statistic: -2.415644
+
+ Comparison Values:
+
+T Two Sided, alpha = 0.05/2: 2.262157
+T One Sided, alpha = 0.05: 1.833113
+P Two Sided: 0.038887
+P One Sided: 0.019444
+
+
+v)
+SA/GA Statistics: Z Statistic: -2.721344
+
+ Comparison Values:
+
+Z Two Sided, alpha = 0.05/2: 1.959964
+Z One Sided, alpha = 0.05: 1.644854
+P Two Sided: 0.003251
+P One Sided: 0.006502
+
+
+SA/GS Statistics: Z Statistic: -1.965415
+
+ Comparison Values:
+
+Z Two Sided, alpha = 0.05/2: 1.959964
+Z One Sided, alpha = 0.05: 1.644854
+P Two Sided: 0.024683
+P One Sided: 0.049366
+
+
+GA/GS Statistics: Z Statistic: 1.663044
+
+ Comparison Values:
+
+Z Two Sided, alpha = 0.05/2: 1.959964
+Z One Sided, alpha = 0.05: 1.644854
+P Two Sided: 0.048152
+P One Sided: 0.096304
