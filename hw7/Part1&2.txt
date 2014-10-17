@@ -1,0 +1,10 @@
+Part 1:
+Simulated annealing performs best on average. Greedy search performs second
+best, but with a lower variance. The genetic algorithm perfoms worst, with a
+very high variance. There was one outlier in the genetic algorithm, with a
+value of 488.83. The best algorithm is simulated annealing, with the lowest
+average objective value and a reasonable variance.
+
+Part 2:
+The simulated annealing algorithm performs best, and stochastically dominates
+both greedy search and the genetic algorithm.
