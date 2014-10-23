@@ -4,7 +4,7 @@ from cost import cost
 
 def DDS(s0, sMin, sMax, maxiter, r, pDecrease = 'exponential'):
     '''Returns a column vector of the best function value (for miminization problem)after each iteration and a row vector of the best solution found'''
-    
+
     #Variable definitions:
 
     #s0 = initial solution; an n-dimensional vector where each dimension represents a decision variable
@@ -28,72 +28,42 @@ def DDS(s0, sMin, sMax, maxiter, r, pDecrease = 'exponential'):
     bestCost = cost(sBest[0,:])
     solution[0] = bestCost
     sigma = []
-    
+
     #determine the standard deviation of the random Gaussian perturbation for each dimension
     for i in range(n):
         sigma = sigma + [r*(sMax[i] - sMin[i])]
 
-    #perform algorithm with a linear decrease in probability of perturbation with iterations
-    if pDecrease != 'exponential':
-        for i in range(maxiter-1):
-            #determine the probability of perturbing each dimension
-            p = 1 - (i+2)/maxiter
-                
-            #perturb dimensions probabilistically
-            for j in range(n):
-                if(random() < p):
-                    sCur[i+1,j] = neighbor(sBest[i,j], sMax[j], sMin[j], sigma[j])
-                else:
-                    sCur[i+1,j] = sBest[i,j]
-
-            #if no dimensions have been changed, choose one randomly to perturb
-            if all(sCur[i+1,:] == sBest[i,:]):
-                d = randint(0,n-1)
-                sCur[i+1,d] = neighbor(sBest[i,d], sMax[d], sMin[d], sigma[d])
-
-            #evaluate the cost of the new solution
-            curCost = cost(sCur[i+1,:])
-
-            #update the best cost and best solution if the new solution is better than the previous best
-            if curCost < bestCost:
-                sBest[i+1,:] = sCur[i+1,:]
-                bestCost = curCost
-            else:
-                sBest[i+1,:] = sBest[i,:]
-
-            #update the solution matrix
-            solution[i+1] = bestCost
-        
-    #perform algorithm with an exponential decrease in probability of perturbation with iterations
-    elif pDecrease == 'exponential':
-        for i in range(maxiter-1):
-            #determine the probability of perturbing each dimension
+    for i in range(maxiter-1):
+        #determine the probability of perturbing each dimension
+        if pDecrease == "exponential":
             p = 1 - np.log(i+2)/np.log(maxiter)
-                
-            #perturb dimensions probabilistically
-            for j in range(n):
-                if random() < p:
-                    sCur[i+1,j] = neighbor(sBest[i,j], sMax[j], sMin[j], sigma[j])
-                else:
-                    sCur[i+1,j] = sBest[i,j]
+        else:
+            p = 1 - (i+2)/maxiter
 
-            #if no dimensions have been changed, choose one randomly to perturb
-            if all(sCur[i+1,:] == sBest[i,:]):
-                d = randint(0,n-1)
-                sCur[i+1,d] = neighbor(sBest[i,d], sMax[d], sMin[d], sigma[d])
-
-            #evaluate the cost of the new solution
-            curCost = cost(sCur[i+1,:])
-
-            #update the best cost and best solution if the new solution is better than the previous best
-            if curCost < bestCost:
-                sBest[i+1,:] = sCur[i+1,:]
-                bestCost = curCost
+        #perturb dimensions probabilistically
+        for j in range(n):
+            if(random() < p):
+                sCur[i+1,j] = neighbor(sBest[i,j], sMax[j], sMin[j], sigma[j])
             else:
-                sBest[i+1,:] = sBest[i,:]
+                sCur[i+1,j] = sBest[i,j]
 
-            #update the solution matrix
-            solution[i+1] = bestCost
+        #if no dimensions have been changed, choose one randomly to perturb
+        if all(sCur[i+1,:] == sBest[i,:]):
+            d = randint(0,n-1)
+            sCur[i+1,d] = neighbor(sBest[i,d], sMax[d], sMin[d], sigma[d])
+
+        #evaluate the cost of the new solution
+        curCost = cost(sCur[i+1,:])
+
+        #update the best cost and best solution if the new solution is better than the previous best
+        if curCost > bestCost:
+            sBest[i+1,:] = sCur[i+1,:]
+            bestCost = curCost
+        else:
+            sBest[i+1,:] = sBest[i,:]
+
+        #update the solution matrix
+        solution[i+1] = bestCost
 
     return solution, sBest[maxiter-1,:]
 
@@ -108,7 +78,7 @@ def neighbor(s, sMax, sMin, sigma):
         s = sMin + (sMin - s)
         if s > sMax:
             s = sMin
-    
+
     elif s > sMax:
         s = sMax - (s - sMax)
         if s < sMin:
