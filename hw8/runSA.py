@@ -25,7 +25,6 @@ def run_trials(T0, alpha, out_avg_file):
     total_cpu_time = time()
 
     for i in range(trials):
-        t = time()
         (solution, best_s) = SA.simulated_annealing(Z[i], T0, alpha,
                                                     beta, m_initial, max_time)
         solution_sets.append(solution)
@@ -64,8 +63,13 @@ def run_trials(T0, alpha, out_avg_file):
     avg_cpu_time = total_cpu_time / trials
     print("Average CPU time: %f" % avg_cpu_time)
 
+    with open("best_solutions_SA.txt", 'w') as output:
+        output.write('SA = [')
+        for best_cost in best_costs:
+            output.write(str(best_cost[0]) + ' ')
+        output.write('];')
+
 T0 = 152934534.3
 alpha = 0.996658
 
 run_trials(T0, alpha, "SA.csv")
-

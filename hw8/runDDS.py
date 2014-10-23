@@ -17,6 +17,7 @@ while len(Z) != trials:
         s.append(random.uniform(min_x, max_x))
     Z.append(s)
 
+
 def run_trials(out_avg_file):
     solution_sets = []
     best_s_sets = []
@@ -24,7 +25,6 @@ def run_trials(out_avg_file):
     total_cpu_time = time()
 
     for i in range(trials):
-        t = time()
         (solution, best_s) = DDS.DDS(Z[i], min_s, max_s, max_iter, 0.2)
         solution_sets.append(solution)
         best_s_sets.append(best_s)
@@ -55,5 +55,12 @@ def run_trials(out_avg_file):
     # Avg CPU Time
     avg_cpu_time = total_cpu_time / trials
     print("Average CPU time: %f" % avg_cpu_time)
+
+    with open("best_solutions_DDS.txt", 'w') as output:
+        output.write('DDS = [')
+        for best_cost in best_costs:
+            output.write(str(best_cost[0]) + ' ')
+        output.write('];')
+
 
 run_trials("DDS.csv")
