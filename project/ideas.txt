@@ -1,0 +1,10 @@
+Danny will write cost function.
+
+Split up other 4 algorithms, one person.
+
+(a) Simulated annealing + some interesting change
+(b) Binary Genetic Algorithm + some change to crossover - Danny
+(c) Tabu Search + DDS - Kevin
+(d) Random Sampling + some interesting change
+
+This gives 4 changes where only 1 is needed to have more material to write about.
