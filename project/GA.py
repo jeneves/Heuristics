@@ -28,6 +28,12 @@ def select(pop_size, parent_fitness, offspring_fitness, parents, offspring):
     population = [parent] + children
     fitness_values = [fitness_of_parent] + fitness_of_children
 
+    # Shuffle before returning to improve randomness
+    combined = zip(population, fitness_values)
+    random.shuffle(combined)
+
+    population[:], fitness_values[:] = zip(*combined)
+
     return (population, fitness_values)
 
 
