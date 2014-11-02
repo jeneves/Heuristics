@@ -46,7 +46,7 @@ def run_trials(out_avg_file):
     print("Average CPU time: %f" % avg_cpu_time)
 
     with open("best_solutions_RS.txt", 'w') as output:
-        output.write('DDS = [')
+        output.write('RS = [')
         for best_cost in best_costs:
             output.write(str(best_cost[0]) + ' ')
         output.write('];')
