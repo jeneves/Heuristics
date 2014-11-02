@@ -1,20 +1,11 @@
-import DDS
 import random
 import numpy
 from time import time
-from allocation import generateRandomAllocation
+from Random import RandomSearch
 
-min_x = 0.0
-max_x = 10
-min_s = [min_x for i in range(7)]
-max_s = [max_x for i in range(7)]
-Z = []
+
 trials = 30
 max_iter = 300
-
-while len(Z) != trials:
-    Z.append(generateRandomAllocation())
-
 
 def run_trials(out_avg_file):
     solution_sets = []
@@ -23,7 +14,7 @@ def run_trials(out_avg_file):
     total_cpu_time = time()
 
     for i in range(trials):
-        (solution, best_s) = DDS.DDS(Z[i], min_s, max_s, max_iter, 1.0)
+        (solution, best_s) = RandomSearch(max_iter)
         solution_sets.append(solution)
         best_s_sets.append(best_s)
 
@@ -54,11 +45,11 @@ def run_trials(out_avg_file):
     avg_cpu_time = total_cpu_time / trials
     print("Average CPU time: %f" % avg_cpu_time)
 
-    with open("best_solutions_DDS.txt", 'w') as output:
-        output.write('DDS = [')
+    with open("best_solutions_RS.txt", 'w') as output:
+        output.write('RS = [')
         for best_cost in best_costs:
             output.write(str(best_cost[0]) + ' ')
         output.write('];')
 
 
-run_trials("DDS.csv")
+run_trials("RS.csv")

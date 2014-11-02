@@ -43,21 +43,26 @@ def DDS(s0, sMin, sMax, maxiter, r, pDecrease = 'exponential'):
 
         #perturb dimensions probabilistically
         for j in range(m):
+            sCur[i+1,j,:] = neighbor(sBest[i,j,:], sMax[j], sMin[j], sigma[j])
+            """
             if(random() < p):
                 sCur[i+1,j,:] = neighbor(sBest[i,j,:], sMax[j], sMin[j], sigma[j])
             else:
                 sCur[i+1,j,:] = sBest[i,j,:]
+            """
 
         #if no dimensions have been changed, choose one randomly to perturb
+        """
         if np.array_equal(sCur[i+1,:,:], sBest[i,:,:]):
             d = randint(0,m-1)
             sCur[i+1,d,:] = neighbor(sBest[i,d,:], sMax[d], sMin[d], sigma[d])
+        """
 
         #evaluate the cost of the new solution
         curCost = cost(sCur[i+1,:,:])
 
         #update the best cost and best solution if the new solution is better than the previous best
-        if curCost > bestCost:
+        if curCost < bestCost:
             sBest[i+1,:] = sCur[i+1,:,:]
             bestCost = curCost
         else:
@@ -73,7 +78,7 @@ def neighbor(s, sMax, sMin, sigma):
     """
     mid = randint(0, len(s) - 1)
     lower_index = max(0, mid - abs(int(sigma * normalvariate(0, 1))))
-    upper_index = min(len(s) - 1, mid + abs(int(sigma * normalvariate(0, 1))))
+    upper_index = min(len(s), mid + abs(int(sigma * normalvariate(0, 1))))
     sub_vector = s[lower_index:upper_index]
     shuffle(sub_vector)
     s[lower_index:upper_index] = sub_vector
