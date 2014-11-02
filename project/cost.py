@@ -6,7 +6,13 @@
 # interference_matrix is an (m x m) matrix of interference values
 #
 # for this particular project, m = 7, n = 50.
-def cost(s, interference_matrix):
+def cost(s, interference_matrix=[[2, 1, 0, 0, 0, 0, 0],
+                                 [1, 2, 1, 1, 1, 0, 0],
+                                 [0, 1, 2, 0, 1, 0, 0],
+                                 [0, 1, 0, 2, 1, 1, 0],
+                                 [0, 1, 1, 1, 2, 1, 1],
+                                 [0, 0, 0, 1, 1, 2, 1],
+                                 [0, 0, 0, 0, 1, 1, 2]]):
 
     num_cells = len(interference_matrix)
     num_channels = len(s[0])
@@ -46,17 +52,3 @@ def cost(s, interference_matrix):
 
 def get_value(s, cell, channel):
     return s[cell][channel]
-
-
-interference_matrix = [[2, 1, 0, 0, 0, 0, 0],
-                       [1, 2, 1, 1, 1, 0, 0],
-                       [0, 1, 2, 0, 1, 0, 0],
-                       [0, 1, 0, 2, 1, 1, 0],
-                       [0, 1, 1, 1, 2, 1, 1],
-                       [0, 0, 0, 1, 1, 2, 1],
-                       [0, 0, 0, 0, 1, 1, 2]]
-
-# Testing from homework 6
-# im = [[5, 2, 0, 0, 0, 2, 2], [2, 5, 2, 0, 0, 0, 2], [0, 2, 5, 2, 0, 0, 2],
-#       [0, 0, 2, 5, 2, 0, 2], [0, 0, 0, 2, 5, 2, 2], [2, 0, 0, 0, 2, 5, 2],
-#       [2, 2, 2, 2, 2, 2, 5]]
