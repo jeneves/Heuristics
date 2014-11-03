@@ -1,5 +1,4 @@
 import DDS
-import random
 import numpy
 from time import time
 from allocation import generateRandomAllocation
