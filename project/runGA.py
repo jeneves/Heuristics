@@ -6,9 +6,9 @@ from allocation import generateRandomAllocation
 
 trials = 30
 pop_size = 50
-max_gen = 50
-p_crossover = 0.9
-p_mutation = 0.01
+max_gen = 30
+p_crossover = 0.844
+p_mutation = 0.076
 
 # generate initial populations
 initial_populations = []
