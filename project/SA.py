@@ -1,35 +1,31 @@
 import math
 import random
+from cost import cost
 
 
-# s = [s1, s2], 0 <= s1, s2 <= 127
-def cost(s):
-    return (
-        10 ** 9
-        - (625 - (s[0] - 25) ** 2)
-        * (1600 - (s[1] - 10) ** 2)
-        * math.sin(s[0] * math.pi / 10)
-        * math.sin(s[1] * math.pi / 10)
-    )
-
-
-# peturb s according to neighbor definition
 def neighbor(s):
-    if random.random() > 0.5:
-        new_max = min(s[0] + 25, 127)
-        new_min = max(s[0] - 25, 0)
-        diff = random.randint(new_min, new_max - 1) - s[0]
-        return [s[0] + diff + 1, s[1]] if diff >= 0 else [s[0] + diff, s[1]]
+    new_s = list(s)  # Get a copy of s
+    cell_to_change = random.choice(new_s)
+    channel_to_invert = random.randint(0, len(cell_to_change) - 1)
+    if cell_to_change[channel_to_invert] == 1:
+        old_value = 1
+        new_value = 0
     else:
-        new_max = min(s[1] + 25, 127)
-        new_min = max(s[1] - 25, 0)
-        diff = random.randint(new_min, new_max - 1) - s[1]
-        return [s[0], s[1] + diff + 1] if diff >= 0 else [s[0], s[1] + diff]
+        old_value = 0
+        new_value = 1
+    potential_to_invert = []
+    for index, value in enumerate(cell_to_change):
+        if value == new_value:
+            potential_to_invert.append(index)
+    other_to_invert = random.choice(potential_to_invert)
+    cell_to_change[channel_to_invert] = new_value
+    cell_to_change[other_to_invert] = old_value
+    return new_s
 
 
 # main algorithm for SA
 def simulated_annealing(s_initial, t_initial, alpha, beta, m_initial, maxtime):
-    t = t_initial
+    temp = t_initial
     current_s = s_initial
     best_s = current_s
     current_cost = cost(current_s)
@@ -44,9 +40,9 @@ def simulated_annealing(s_initial, t_initial, alpha, beta, m_initial, maxtime):
     while time < maxtime:
         iter_num += 1
         current_s, current_cost, best_s, best_cost = \
-            metropolis(current_s, current_cost, best_s, best_cost, t, m)
+            metropolis(current_s, current_cost, best_s, best_cost, temp, m)
         time += m
-        t *= alpha
+        temp *= alpha
         m *= beta
         result = [iter_num, current_cost, best_cost]
         solution.append(result)
