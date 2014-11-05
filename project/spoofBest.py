@@ -68,3 +68,8 @@ def spoofBest():
     assert (sum(s[6]) == traffic[6])
 
     return (s, cost(s))
+
+
+def sperlingAllocation():
+    s, cost = spoofBest()
+    return s

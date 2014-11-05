@@ -1,14 +1,15 @@
 import SA
 import numpy
 from time import time
-from allocation import generateRandomAllocation
+# from allocation import generateRandomAllocation as getAllocation
+from spoofBest import sperlingAllocation as getAllocation
 
 trials = 30
-max_iter = 300
+max_iter = 1500
 Z = []
 
 while len(Z) != trials:
-    Z.append(generateRandomAllocation())
+    Z.append(getAllocation())
 
 
 def run_trials(T0, alpha, out_avg_file):
@@ -69,7 +70,7 @@ def run_trials(T0, alpha, out_avg_file):
 
 
 # Values from SAParamter.py in homework 2
-T0 = 152934534.3
-alpha = 0.996658
+alpha = 0
+T0 = 0.1
 
 run_trials(T0, alpha, "SA.csv")

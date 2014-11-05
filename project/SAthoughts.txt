@@ -1,0 +1,139 @@
+With the old homework 2 values:
+T0 = 152934534.3
+alpha = 0.996658
+Average best cost: 166.933333, Std Dev: 2.839405
+Average CPU time: 1.287743
+
+
+
+SAParameter.py says that the average delta cost is 3.
+Let's say I want initial probability to be 90%
+And to have it down to 50% after 500 iterations.
+    T0 = 28.47
+    alpha = 0.996
+    Average best cost: 108.333333, Std Dev: 3.025815
+    Average CPU time: 1.221068
+
+Holy shit that's much better already!  Let's make it more greedy.
+Hold T0 in place and decrease alpha.
+    alpha = 0.75
+    Average best cost: 94.600000, Std Dev: 2.374868
+    Average CPU time: 1.150482
+
+Woo!
+    alpha = 0.5
+    Average best cost: 93.266667, Std Dev: 2.999259
+    Average CPU time: 1.153441
+
+
+Haha let's automate this testing...
+    Testing alpha = 0.4
+    Average best cost: 93.200000, Std Dev: 3.229035
+    Average CPU time: 1.140152
+
+    Testing alpha = 0.45
+    Average best cost: 94.533333, Std Dev: 3.323987
+    Average CPU time: 1.166114
+
+    Testing alpha = 0.5
+    Average best cost: 93.000000, Std Dev: 2.840188
+    Average CPU time: 1.156457
+
+    Testing alpha = 0.55
+    Average best cost: 94.066667, Std Dev: 2.756004
+    Average CPU time: 1.144401
+
+    Testing alpha = 0.6
+    Average best cost: 93.033333, Std Dev: 3.301347
+    Average CPU time: 1.142943
+
+    Testing alpha = 0.65
+    Average best cost: 93.533333, Std Dev: 2.617038
+    Average CPU time: 1.155840
+
+    Testing alpha = 0.7
+    Average best cost: 93.266667, Std Dev: 2.581128
+    Average CPU time: 1.148847
+
+    Testing alpha = 0.75
+    Average best cost: 93.533333, Std Dev: 3.148898
+    Average CPU time: 1.145734
+
+    Testing alpha = 0.8
+    Average best cost: 94.566667, Std Dev: 2.704112
+    Average CPU time: 1.142278
+
+
+As we can see, these are all pretty similar.  Even though I expect it'll do
+worse I'll also increase the temperature.  Set alpha = 0.6
+    Testing T0 = 25
+    Average best cost: 93.600000, Std Dev: 2.776088
+    Average CPU time: 1.146550
+
+    Testing T0 = 50
+    Average best cost: 93.833333, Std Dev: 2.841166
+    Average CPU time: 1.157327
+
+    Testing T0 = 75
+    Average best cost: 93.333333, Std Dev: 2.611938
+    Average CPU time: 1.200631
+
+    Testing T0 = 100
+    Average best cost: 92.933333, Std Dev: 2.657484
+    Average CPU time: 1.235277
+
+    Testing T0 = 200
+    Average best cost: 94.500000, Std Dev: 3.836231
+    Average CPU time: 1.242388
+
+    Testing T0 = 400
+    Average best cost: 93.333333, Std Dev: 2.226108
+    Average CPU time: 1.305723
+
+    Testing T0 = 800
+    Average best cost: 93.900000, Std Dev: 2.087263
+    Average CPU time: 1.400634
+
+    Testing T0 = 1600
+    Average best cost: 94.833333, Std Dev: 2.310604
+    Average CPU time: 1.142615
+
+    Testing T0 = 3200
+    Average best cost: 93.533333, Std Dev: 2.825283
+    Average CPU time: 1.142916
+
+    Testing T0 = 10000
+    Average best cost: 93.366667, Std Dev: 3.114304
+    Average CPU time: 1.167344
+
+    Testing T0 = 50000
+    Average best cost: 93.933333, Std Dev: 3.065217
+    Average CPU time: 1.173289
+
+    Testing T0 = 100000
+    Average best cost: 94.433333, Std Dev: 3.158938
+    Average CPU time: 1.528795
+
+    Testing T0 = 150000
+    Average best cost: 92.733333, Std Dev: 1.842703
+    Average CPU time: 1.246701
+
+    Testing T0 = 300000
+    Average best cost: 94.733333, Std Dev: 3.395422
+    Average CPU time: 1.260897
+
+
+Alpha is too damn low to make a difference lololol.
+As a final test, I'll do a 100% greedy test.
+    T0 = 0.1
+    alpha = 0
+    Average best cost: 93.433333, Std Dev: 3.333500
+    Average CPU time: 1.299660
+
+Greedy search FTW.  Now we improve by using the Sperling method as the initial.
+    T0 = 0.1
+    alpha = 0
+    Average best cost: 81.566667, Std Dev: 0.882547
+    Average CPU time: 1.186815
+
+And that's simulated annealing folks.

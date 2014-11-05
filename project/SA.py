@@ -1,10 +1,11 @@
+from copy import deepcopy
 import math
 import random
 from cost import cost
 
 
 def neighbor(s):
-    new_s = list(s)  # Get a copy of s
+    new_s = deepcopy(s)
     cell_to_change = random.choice(new_s)
     channel_to_invert = random.randint(0, len(cell_to_change) - 1)
     if cell_to_change[channel_to_invert] == 1:
@@ -42,7 +43,8 @@ def simulated_annealing(s_initial, t_initial, alpha, beta, m_initial, maxtime):
         current_s, current_cost, best_s, best_cost = \
             metropolis(current_s, current_cost, best_s, best_cost, temp, m)
         time += m
-        temp *= alpha
+        if temp > 0.1:  # Preventing divide by zero on line 68
+            temp *= alpha
         m *= beta
         result = [iter_num, current_cost, best_cost]
         solution.append(result)
