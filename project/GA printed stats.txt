@@ -1,0 +1,4 @@
+Roulette: Average best cost: 163.266667, Std Dev: 2.143725
+Average CPU time: 2.522333
+Tournament: Average best cost: 163.500000, Std Dev: 2.045320
+Average CPU time tournament: 2.572367
