@@ -34,3 +34,5 @@ Average CPU time: 1.226633
 , 0, 1, 0, 0, 0, 0, 0, 1, 0, 0], [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0
 , 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0,
 1, 0, 1, 0, 1, 0, 0, 1]]
+
+The cost of cost_free_s is 132, removing 34 allocations of the 79 conflicts as some cells conflicted with more than one.
