@@ -1,8 +1,8 @@
 import SA
 import numpy
 from time import time
-# from allocation import generateRandomAllocation as getAllocation
-from spoofBest import sperlingAllocation as getAllocation
+from allocation import generateRandomAllocation as getAllocation
+# from spoofBest import sperlingAllocation as getAllocation
 
 trials = 30
 max_iter = 1500
@@ -41,8 +41,8 @@ def run_trials(T0, alpha, out_avg_file):
                 total_cost_best += solution_sets[sol][i][2]
             iteration = solution_sets[sol][i][0]
 
-            avg_cost_current = total_cost_current / trials
-            avg_cost_best = total_cost_best / trials
+            avg_cost_current = total_cost_current / float(trials)
+            avg_cost_best = total_cost_best / float(trials)
 
             out_file.write("%d, %f, %f\n" % (iteration,
                                              avg_cost_current,
@@ -68,9 +68,20 @@ def run_trials(T0, alpha, out_avg_file):
             output.write(str(best_cost[0]) + ' ')
         output.write('];')
 
+    best_index = 0
+    best_cost = 100
+    index = 0
+    for best_cost_test in best_costs:
+        if best_cost_test < best_cost:
+            best_cost = best_cost_test
+            best_index = index
+        index+=1
+
+    best_s = best_s_sets[best_index]
+    print(best_s)
 
 # Values from SAParamter.py in homework 2
-alpha = 0
-T0 = 0.1
+alpha = 0.996
+T0 = 28.47
 
 run_trials(T0, alpha, "SA.csv")

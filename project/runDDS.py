@@ -9,7 +9,7 @@ min_s = [min_x for i in range(7)]
 max_s = [max_x for i in range(7)]
 Z = []
 trials = 30
-max_iter = 300
+max_iter = 1500
 
 while len(Z) != trials:
     Z.append(generateRandomAllocation())

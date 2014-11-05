@@ -5,7 +5,7 @@ from Random import RandomSearch
 
 
 trials = 30
-max_iter = 300
+max_iter = 1500
 
 def run_trials(out_avg_file):
     solution_sets = []

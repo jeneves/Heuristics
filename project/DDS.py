@@ -43,7 +43,10 @@ def DDS(s0, sMin, sMax, maxiter, r, pDecrease = 'exponential'):
 
         #perturb dimensions probabilistically
         for j in range(m):
-            sCur[i+1,j,:] = neighbor(sBest[i,j,:], sMax[j], sMin[j], sigma[j])
+            if (random() < p):
+                sCur[i+1,j,:] = neighbor(sBest[i,j,:], sMax[j], sMin[j], sigma[j])
+            else:
+                sCur[i+1,j,:] = sBest[i,j,:]
             """
             if(random() < p):
                 sCur[i+1,j,:] = neighbor(sBest[i,j,:], sMax[j], sMin[j], sigma[j])
@@ -52,11 +55,9 @@ def DDS(s0, sMin, sMax, maxiter, r, pDecrease = 'exponential'):
             """
 
         #if no dimensions have been changed, choose one randomly to perturb
-        """
         if np.array_equal(sCur[i+1,:,:], sBest[i,:,:]):
             d = randint(0,m-1)
             sCur[i+1,d,:] = neighbor(sBest[i,d,:], sMax[d], sMin[d], sigma[d])
-        """
 
         #evaluate the cost of the new solution
         curCost = cost(sCur[i+1,:,:])

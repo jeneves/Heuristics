@@ -1,0 +1,36 @@
+C:\Users\cit-labs\Desktop\Heuristics\project>python runDDS.py
+Average best cost: 163.366667, Std Dev: 2.562334
+Average CPU time: 1.751967
+
+C:\Users\cit-labs\Desktop\Heuristics\project>python runRandom.py
+Average best cost: 163.600000, Std Dev: 1.540563
+Average CPU time: 1.758467
+
+C:\Users\cit-labs\Desktop\Heuristics\project>python runGA.py
+Roulette: Average best cost: 163.766667, Std Dev: 2.124199
+Average CPU time: 1.150000
+Tournament: Average best cost: 163.600000, Std Dev: 1.993322
+Average CPU time tournament: 1.163967
+
+C:\Users\cit-labs\Desktop\Heuristics\project>python runSA.py
+Average best cost: 108.100000, Std Dev: 4.353925
+Average CPU time: 1.244100
+
+
+C:\Users\cit-labs\Desktop\Heuristics\project>python runSA.py
+Average best cost: 81.400000, Std Dev: 0.879394
+Average CPU time: 1.226633
+[[1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0,
+1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1], [1, 1,
+0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0,
+ 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1], [0, 0, 1, 0, 1,
+ 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0
+, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0], [1, 1, 1, 1, 1, 1, 1, 0
+, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0,
+1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1], [0, 1, 0, 1, 0, 0, 1, 0, 0, 1,
+0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0,
+ 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0], [0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0,
+ 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1
+, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0], [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0
+, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0,
+1, 0, 1, 0, 1, 0, 0, 1]]
