@@ -17,7 +17,9 @@ DDS = [167.0 165.0 161.0 163.0 164.0 160.0 166.0 167.0 164.0 164.0 160.0 ...
        165.0 166.0 163.0 167.0 155.0 161.0 162.0 161.0 162.0 163.0 163.0 ...
        165.0 165.0 165.0 165.0 160.0 164.0 164.0 164.0 ];
   
-TS = ones(1, length(DDS)) * 130;
+TS = [167.0 164.0 166.0 168.0 164.0 167.0 164.0 166.0 168.0 164.0 167.0 ...
+      164.0 166.0 168.0 164.0 167.0 164.0 166.0 168.0 164.0 167.0 164.0 ...
+      166.0 168.0 164.0 167.0 164.0 166.0 168.0 164.0];
 
 allHeur = [SA' RS' GA' DDS' TS'];
 means = [mean(SA) mean(RS) mean(GA) mean(DDS) mean(TS)]
@@ -48,7 +50,7 @@ for heur = 1:5
     sorted = sort(allHeur(:, heur), 'ascend');
     plot(sorted, yVals, '-x');
 end
-legend(labels, 'Location', 'SouthEast');
+legend(labels, 'Location', 'North');
 title('Empirical CDF of SA, RS, GA, DDS and TS');
 xlabel('Objective Function Value');
 ylabel('Cumulative Probability');
