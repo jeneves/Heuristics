@@ -5,9 +5,9 @@ from Tabu import TabuSearch
 from allocation import generateRandomAllocation
 
 
-trials = 30
-max_iter = 10
-k = 5
+trials = 5
+max_iter = 500
+k = 3
 
 def run_trials(out_avg_file):
     solution_sets = []

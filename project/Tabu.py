@@ -1,9 +1,10 @@
 import numpy as np
 from time import time
 from cost import cost
+from random import randint
 
 
-def neighbor(sCur, tenure, tabu_map):
+def neighbor_classic(sCur, tenure, tabu_map):
     best_cost = float("inf")
     tabu_index = None
     rows, cols = len(sCur), len(sCur[0])
@@ -28,6 +29,37 @@ def neighbor(sCur, tenure, tabu_map):
     best_neighbor[i,j] = best_neighbor[i,k]
     best_neighbor[i,k] = temp
     tabu_map[tabu_index] = tenure
+    return best_neighbor
+
+
+def shuffle_cell(cell_vector, num_swaps):
+    cell = list(cell_vector)
+    for i in range(num_swaps):
+        first = randint(0, len(cell) - 1)
+        second = randint(0, len(cell) - 1)
+        temp = cell[first]
+        cell[first] = cell[second]
+        cell[second] = temp
+    return cell
+
+def neighbor(sCur, tenure, tabu_map, num_cell_neighbors=2, cell_variance=5):
+    best_cost = float("inf")
+    tabu_cell = -1
+    best_neighbor = None
+    rows, cols = len(sCur), len(sCur[0])
+    for i in range(rows):
+        if i not in tabu_map:
+            for j in range(num_cell_neighbors):
+                temp = sCur[i,:]
+                sCur[i,:] = shuffle_cell(sCur[i,:], cell_variance)
+                new_cost = cost(sCur)
+                if new_cost < best_cost:
+                    best_cost = new_cost
+                    best_neighbor = sCur[:,:]
+                    tabu_cell = i
+                sCur[i,:] = temp
+    tabu_map = { k:(v - 1) for k,v in tabu_map.items() if k != 0 }
+    tabu_map[tabu_cell] = tenure
     return best_neighbor
 
 
@@ -60,6 +92,6 @@ def TabuSearch(s0, k, max_iter):
 
         #update the solution matrix
         solution[i+1] = bestCost
-        print("iteration complete %.2f" % (time() - start_time))
+        # print("iteration complete %.2f" % (time() - start_time))
 
     return solution, sBest[max_iter-1,:,:]
