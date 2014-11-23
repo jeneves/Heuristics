@@ -1,0 +1,80 @@
+\documentclass[12pt]{article}
+%\usepackage{fullpage}
+\usepackage{epic}
+\usepackage{eepic}
+\usepackage{paralist}
+\usepackage{graphicx}
+\usepackage{algorithm,algorithmic}
+\usepackage{tikz}
+\usepackage{xcolor,colortbl}
+\usepackage{amsmath, amssymb}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This is FULLPAGE.STY by H.Partl, Version 2 as of 15 Dec 1988.
+% Document Style Option to fill the paper just like Plain TeX.
+
+\typeout{Style Option FULLPAGE Version 2 as of 15 Dec 1988}
+
+\topmargin 0pt
+\advance \topmargin by -\headheight
+\advance \topmargin by -\headsep
+
+\textheight 8.9in
+
+\oddsidemargin 0pt
+\evensidemargin \oddsidemargin
+\marginparwidth 0.5in
+
+\textwidth 6.5in
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{empty}
+\setlength{\oddsidemargin}{0in}
+\setlength{\topmargin}{-0.8in}
+\setlength{\textwidth}{6.8in}
+\setlength{\textheight}{9.5in}
+
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0in}
+\addtolength{\parskip}{0.2cm}
+\setlength{\fboxrule}{.5mm}\setlength{\fboxsep}{1.2mm}
+\newlength{\boxlength}\setlength{\boxlength}{\textwidth}
+\addtolength{\boxlength}{-4mm}
+
+\newcommand{\algosolutionbox}[2]{
+  \begin{center}
+    \framebox{\parbox{\boxlength}{
+        \textbf{CS 5722, Fall 2014} \hfill \textbf{#1}\\
+        #2
+      }}
+  \end{center}}
+
+\begin{document}
+
+\algosolutionbox{Homework 13}{
+  % TODO: fill in your own name, netID, and collaborators
+  Group: Michael Jalkio, Kevin Li, Daniel Sperling\\
+  NetIDs: mrj77, kyl27, dhs252
+}
+
+\section{1}
+\subsection{a}
+The equation is:
+\begin{align*}
+f(x) & = x + ((x + (((x + (cos(x-x) - (x-x))) * x) * x))*x)\\
+& = x + ((x + (((x + (cos(0) - 0)) * x) * x))*x)\\
+& = x + ((x + (((x + 1) * x) * x))*x)\\
+& = x + ((x + ((x^2 + x) * x))*x)\\
+& =  x + ((x + x^3 + x^2)*x)\\
+& = x + (x^2 + x^4 + x^3)\\
+& = x^4 + x^3 + x^2 + x
+\end{align*}
+
+\subsection{b}
+The only unnecessary term is $(-XX)$ that is subtracted from the cosine term.  The term $(-(COS(-XX))(-XX))$ could simply be $(COS(-XX))$.
+
+\section{3}
+
+
+\end{document}
