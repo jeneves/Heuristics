@@ -58,8 +58,7 @@
   NetIDs: mrj77, kyl27, dhs252
 }
 
-\section{1}
-\subsection{a}
+\section{1a}
 The equation is:
 \begin{align*}
 f(x) & = x + ((x + (((x + (cos(x-x) - (x-x))) * x) * x))*x)\\
@@ -72,9 +71,37 @@ f(x) & = x + ((x + (((x + (cos(x-x) - (x-x))) * x) * x))*x)\\
 \end{align*}
 
 \subsection{b}
-The only unnecessary term is $(-XX)$ that is subtracted from the cosine term.  The term $(-(COS(-XX))(-XX))$ could simply be $(COS(-XX))$.
+The only unnecessary term is $(-XX)$ that is subtracted from the cosine term.  The subtree $(-(COS(-XX))(-XX))$ could simply be $(COS(-XX))$.
 
-\section{3}
+\section{2}
 
+\section{3a}
+The summary of the Santa Fe policy from lecture is:
+\begin{enumerate}
+  \item Move ahead if there is food
+  \item If no food turn left and move ahead if food
+  \item Otherwise turn right twice and move ahead if food
+  \item Otherwise turn left and move even though there is no food
+\end{enumerate}
+This is not optimal for the Los Altos trail.  The main reason is that it needs the ant to be directly next to a piece of food for it to change its direction.  This does not happen at locations 116 an 136 on the Los Altos trail.  At these locations the Santa Fe policy would cause the ant to continue moving downward, it would never turn to continue to follow the path.
+
+\subsection{b}
+% Honestly I'm not quite sure why you would use any different functions or terminals...
+% Maybe you could add more ProgNm functions?  Not sure why that would be helpful.
+
+\section{4}
+\includegraphics{problem4}
+
+\section{5a}
+1 piece of food is eaten, the one at the start.  The 10 steps taken are:
+\begin{center}
+[Move, Move, Move, Move, Move, Move, Move, Move, Move, Move]
+\end{center}
+
+\subsection{b}
+3 pieces of food are eaten.  The 10 steps taken are:
+\begin{center}
+[Right, Left, Move, Right, Move, Move, Right, Left, Move, Right]
+\end{center}
 
 \end{document}
