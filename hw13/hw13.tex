@@ -73,7 +73,29 @@ f(x) & = x + ((x + (((x + (cos(x-x) - (x-x))) * x) * x))*x)\\
 \subsection{b}
 The only unnecessary term is $(-XX)$ that is subtracted from the cosine term.  The subtree $(-(COS(-XX))(-XX))$ could simply be $(COS(-XX))$.
 
-\section{2}
+\section{2a}
+Objective: $X^2/2 + 2X + 2$\\
+Terminal Set: $X$
+Function Set: addition, subtraction, multiplication, and protected division.
+Parameters: Population size 1000, max generations 151
+
+\subsection{b}
+The best fitness at generation zero was 6.85 for a tree with 23 nodes:\\
+\includegraphics[scale=0.5]{gen_0}
+
+\subsection{c}
+An intermediate solution was found at fitness 5.85 with 9 nodes, representing 2X + 2. This solution was actually found quickly, in generation 1, and lasted for many generations as the best. It is significantly simpler than the first generation, and comes very close to approximating the real solution (has two terms correct, 2X + 2). It is notably worse than the best solution, though, as it does not have any attempt at multiplication, which would give the remaining term:\\
+\includegraphics[scale=0.5]{intermediate}
+
+\subsection{d}
+The best-of-run individual had fitness 4.1462 and had 23 nodes. It represents 2X + 2:\\
+\includegraphics[scale=0.5]{best}
+
+\subsection{e}
+No, this was an approximation.
+
+\subsection{f}
+After many runs, the code continues to return to a fitness no better than 4.1462 as the best after 151 generations.
 
 \section{3a}
 The summary of the Santa Fe policy from lecture is:
