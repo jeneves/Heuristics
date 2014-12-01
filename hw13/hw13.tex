@@ -105,11 +105,10 @@ The summary of the Santa Fe policy from lecture is:
   \item Otherwise turn right twice and move ahead if food
   \item Otherwise turn left and move even though there is no food
 \end{enumerate}
-This is not optimal for the Los Altos trail.  The main reason is that it needs the ant to be directly next to a piece of food for it to change its direction.  This does not happen at locations 116 an 136 on the Los Altos trail.  At these locations the Santa Fe policy would cause the ant to continue moving downward, it would never turn to continue to follow the path.
+This is not optimal for the Los Altos trail.  The main reason is that it needs the ant to be directly next to a piece of food for it to change its direction.  This does not happen at locations 116, 130, 136, and 148 on the Los Altos trail.  At these locations the Santa Fe policy would cause the ant to continue moving forward, it would never turn to continue following the food path.
 
 \subsection{b}
-% Honestly I'm not quite sure why you would use any different functions or terminals...
-% Maybe you could add more ProgNm functions?  Not sure why that would be helpful.
+We would use the same functions and terminals for finding a solution to the Los Altos trail problem. Since the Los Altos trail has certain instances where the next food item is 2 steps away, all that is required is that the ant search within a radius of 2 squares before deciding on a direction. Thus, if there is no food reachable within one move, then the ant searches all neighboring squares 2 moves away (this can be done efficiently with breadth first search). The Los Altos policy would otherwise be indentical to the Santa Fe policy.
 
 \section{4}
 \includegraphics{problem4}
